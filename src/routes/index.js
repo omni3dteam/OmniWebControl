@@ -37,7 +37,8 @@ export const Routing = [
 				icon: 'grid_on',
 				caption: 'menu.control.heightmap',
 				path: '/Heightmap',
-				component: Control.Heightmap
+				component: Control.Heightmap,
+				hidden: true
 			}
 		]
 	},
@@ -94,7 +95,8 @@ export const Routing = [
 				icon: 'radio_button_checked',
 				caption: 'menu.files.filaments',
 				path: '/Files/Filaments',
-				component: Files.Filaments
+				component: Files.Filaments,
+				hidden: true
 			},
 			// Display
 			{
@@ -109,7 +111,8 @@ export const Routing = [
 				icon: 'settings',
 				caption: 'menu.files.system',
 				path: '/Files/System',
-				component: Files.System
+				component: Files.System,
+				hidden: true
 			}
 		]
 	},
@@ -130,7 +133,8 @@ export const Routing = [
 				icon: 'settings_applications',
 				caption: 'menu.settings.machine',
 				path: '/Settings/Machine',
-				component: Settings.Machine
+				component: Settings.Machine,
+				hidden: true
 			}
 			// Update (coming soon)
 			/* {
