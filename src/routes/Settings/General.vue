@@ -16,9 +16,6 @@
 		<v-flex md7 lg8>
 			<v-layout column>
 				<v-flex>
-					<settings-general-panel></settings-general-panel>
-				</v-flex>
-				<v-flex>
 					<settings-webcam-panel></settings-webcam-panel>
 				</v-flex>
 			</v-layout>
