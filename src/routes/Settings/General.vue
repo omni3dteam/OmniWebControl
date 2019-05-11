@@ -16,10 +16,10 @@
 		<v-flex md7 lg8>
 			<v-layout column>
 				<v-flex>
-					<upload-btn class="hidden-sm-and-down" :directory="directory" target="sys" color="primary"></upload-btn>
+					<settings-webcam-panel></settings-webcam-panel>
 				</v-flex>
 				<v-flex>
-					<settings-webcam-panel></settings-webcam-panel>
+					<upload-btn class="hidden-sm-and-down" :directory="directory" target="sys" color="primary"></upload-btn>
 				</v-flex>
 			</v-layout>
 		</v-flex>
