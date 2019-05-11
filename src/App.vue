@@ -83,9 +83,6 @@ a:not(:hover) {
 			<connect-btn v-if="isLocal" class="hidden-xs-only"></connect-btn>
 
 			<v-spacer></v-spacer>
-
-			<code-input class="hidden-sm-and-down"></code-input>
-
 			<v-spacer></v-spacer>
 
 			<upload-btn target="start" class="hidden-sm-and-down"></upload-btn>
