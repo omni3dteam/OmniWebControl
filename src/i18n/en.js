@@ -519,7 +519,7 @@ export default {
 			jobDuration: 'Job Duration'
 		},
 		jobEstimations: {
-			caption: 'Estimations',
+			caption: 'Estimated time left',
 			filament: 'Based on Filament Usage',
 			file: 'Based on File Progress',
 			layer: 'Based on Layer Time',
