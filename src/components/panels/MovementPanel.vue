@@ -24,12 +24,6 @@
 			<v-spacer></v-spacer>
 
 			<v-menu offset-y left :disabled="uiFrozen" v-tab-control>
-				<template slot="activator">
-					<v-btn color="primary" small class="mx-0" :disabled="uiFrozen">
-						{{ $t('panel.movement.compensation') }} <v-icon>arrow_drop_down</v-icon>
-					</v-btn>
-				</template>
-
 				<v-card>
 					<v-list>
 						<template v-if="move.compensation">
@@ -44,7 +38,7 @@
 							<v-icon class="mr-1">view_module</v-icon> {{ $t(move.geometry.type === 'delta' ? 'panel.movement.runDelta' : 'panel.movement.runBed') }}
 						</v-list-tile>
 						<v-list-tile :disabled="!move.compensation || move.compensation.indexOf('Point') === -1" @click="sendCode('M561')">
-							<v-icon class="mr-1">clear</v-icon> {{ $t('panel.movement.disableBedCompensation') }} 
+							<v-icon class="mr-1">clear</v-icon> {{ $t('panel.movement.disableBedCompensation') }}
 						</v-list-tile>
 
 						<v-divider></v-divider>
