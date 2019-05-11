@@ -22,7 +22,7 @@ export const Routing = [
 			{
 				icon: 'info',
 				caption: 'menu.job.status',
-				path: '/Job/Status',
+				path: '/',
 				component: Job.Status
 			},
 			// Webcam
@@ -51,7 +51,7 @@ export const Routing = [
 			{
 				icon: 'dashboard',
 				caption: 'menu.control.dashboard',
-				path: '/',
+				path: '/Dashboard',
 				component: Control.Dashboard
 			},
 			// Console
