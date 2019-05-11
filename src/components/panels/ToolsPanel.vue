@@ -75,11 +75,6 @@ table.extra tr > td:first-child {
 									<br/>
 									<span class="font-weight-regular caption">
 										T{{ tool.number }}
-										<template v-if="canLoadFilament(tool)">
-											- <panel-link :active="!loadingFilament" class="font-weight-regular" href="#" @click="filamentClick($event, tool)">
-												{{ tool.filament ? tool.filament : $t('panel.tools.loadFilament') }}
-											</panel-link>
-										</template>
 									</span>
 								</th>
 
