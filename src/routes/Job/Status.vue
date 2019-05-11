@@ -21,6 +21,9 @@
 				</v-flex>
 				<v-flex order-sm1 order-md2 md6 xl7 d-flex>
 					<v-layout column>
+						<v-flex d-flex>
+							<webcam-panel></webcam-panel>
+						</v-flex>
 						<v-flex shrink>
 							<v-layout row wrap>
 								<v-flex xs6 md12>
