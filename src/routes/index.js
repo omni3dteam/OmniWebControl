@@ -13,6 +13,35 @@ import Settings from './Settings'
 Vue.use(VueRouter)
 
 export const Routing = [
+	// Job
+	{
+		icon: 'print',
+		caption: 'menu.job.caption',
+		pages: [
+			// Status
+			{
+				icon: 'info',
+				caption: 'menu.job.status',
+				path: '/Job/Status',
+				component: Job.Status
+			},
+			// Webcam
+			{
+				icon: 'photo_camera',
+				caption: 'menu.job.webcam',
+				path: '/Job/Webcam',
+				component: Job.Webcam,
+				condition: 'webcam'
+			}
+			// Visualiser (coming soon)
+			/* {
+				icon: 'theaters',
+				caption: 'menu.job.visualiser',
+				path: '/Job/Visualiser',
+				component: Job.Visualiser
+			} */
+		]
+	},
 	// Control
 	{
 		icon: 'tune',
@@ -41,35 +70,6 @@ export const Routing = [
 				component: Control.Heightmap,
 				hidden: true
 			}
-		]
-	},
-	// Job
-	{
-		icon: 'print',
-		caption: 'menu.job.caption',
-		pages: [
-			// Status
-			{
-				icon: 'info',
-				caption: 'menu.job.status',
-				path: '/Job/Status',
-				component: Job.Status
-			},
-			// Webcam
-			{
-				icon: 'photo_camera',
-				caption: 'menu.job.webcam',
-				path: '/Job/Webcam',
-				component: Job.Webcam,
-				condition: 'webcam'
-			}
-			// Visualiser (coming soon)
-			/* {
-				icon: 'theaters',
-				caption: 'menu.job.visualiser',
-				path: '/Job/Visualiser',
-				component: Job.Visualiser
-			} */
 		]
 	},
 	// Files
