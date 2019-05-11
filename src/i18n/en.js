@@ -56,8 +56,8 @@ export default {
 				title: 'Upload & Start one or more G-Code files (drag&drop is supported as well)'
 			},
 			macros: {
-				caption: 'Upload Macro File(s)',
-				title: 'Upload one or more macro files (drag&drop is supported as well)'
+				caption: 'Upload Procedure File(s)',
+				title: 'Upload one or more procedure files (drag&drop is supported as well)'
 			},
 			filaments: {
 				caption: 'Upload Filament Configs',
@@ -195,7 +195,7 @@ export default {
 		display: 'Menu Directory',
 		filaments: 'Filaments Directory',
 		gcodes: 'G-Codes Directory',
-		macros: 'Macros Directory',
+		macros: 'Procedures Directory',
 		sys: 'System Directory',
 		www: 'WWW Directory'
 	},
@@ -329,9 +329,9 @@ export default {
 			noFilaments: 'No Filaments'
 		},
 		macro: {
-			caption: 'Macros',
-			noMacros: 'No Macros',
-			run: 'Run Macro',
+			caption: 'Procedures',
+			noMacros: 'No Procedures',
+			run: 'Run Procedure',
 			root: 'Root'
 		},
 		jobs: {
@@ -367,7 +367,7 @@ export default {
 			caption: 'File Management',
 			jobs: 'G-Code Jobs',
 			filaments: 'Filaments',
-			macros: 'Macros',
+			macros: 'Procedures',
 			display: 'Display',
 			system: 'System',
 			web: 'Web'
@@ -419,7 +419,7 @@ export default {
 		},
 		newFilament: {
 			errorTitle: 'Failed to create filament',
-			errorTitleMacros: 'Failed to create filament macros',
+			errorTitleMacros: 'Failed to create filament procedures',
 			successTitle: 'Filament created',
 			successMessage: 'Successfully created filament {0}'
 		},
