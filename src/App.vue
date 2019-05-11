@@ -89,8 +89,8 @@ a:not(:hover) {
 
 			<v-spacer></v-spacer>
 
-			<img src="logo_dark.png" alt="Omni3D logo dark" v-if="darkTheme" class="logo">
-			<img src="logo.png" alt="Omni3D logo" v-if="!darkTheme" class="logo">
+			<img src="@/assets/logo_dark.png" alt="Omni3D logo dark" v-if="darkTheme" class="logo">
+			<img src="@/assets/logo.png" alt="Omni3D logo" v-if="!darkTheme" class="logo">
 
 			<v-spacer></v-spacer>
 
