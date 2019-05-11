@@ -30,7 +30,8 @@ export const Routing = [
 				icon: 'code',
 				caption: 'menu.control.console',
 				path: '/Console',
-				component: Control.Console
+				component: Control.Console,
+				hidden: true
 			},
 			// Height Map
 			{
