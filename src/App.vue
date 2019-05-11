@@ -46,6 +46,11 @@ input::-webkit-inner-spin-button {
 a:not(:hover) {
 	text-decoration: none;
 }
+.logo {
+	height: 100%;
+	width: auto;
+	padding: 2px 0;
+}
 </style>
 
 <template>
@@ -83,6 +88,10 @@ a:not(:hover) {
 			<connect-btn v-if="isLocal" class="hidden-xs-only"></connect-btn>
 
 			<v-spacer></v-spacer>
+
+			<img src="logo_dark.png" alt="Omni3D logo dark" v-if="darkTheme" class="logo">
+			<img src="logo.png" alt="Omni3D logo" v-if="!darkTheme" class="logo">
+
 			<v-spacer></v-spacer>
 
 			<upload-btn target="start" class="hidden-sm-and-down"></upload-btn>
