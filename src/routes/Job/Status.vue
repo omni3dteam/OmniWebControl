@@ -44,9 +44,6 @@
 						<v-flex>
 							<speed-factor-panel></speed-factor-panel>
 						</v-flex>
-						<v-flex>
-							<extrusion-factors-panel></extrusion-factors-panel>
-						</v-flex>
 					</v-layout>
 				</v-flex>
 			</v-layout>
