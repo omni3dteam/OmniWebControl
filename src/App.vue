@@ -108,7 +108,7 @@ a:not(:hover) {
 
 		<v-content id="content">
 			<v-scroll-y-transition>
-				<v-container fluid id="global-container" class="container" v-show="!hideGlobalContainer || $vuetify.breakpoint.mdAndUp">
+				<v-container fluid id="global-container" class="container" v-show="showGlobalStatus && (!hideGlobalContainer || $vuetify.breakpoint.mdAndUp)">
 					<v-layout row wrap>
 						<v-flex xs12 sm6 md4 lg4>
 							<status-panel></status-panel>
@@ -178,7 +178,8 @@ export default {
 			hideGlobalContainer: false,
 			rightDrawer: false,
 			routing: Routing,
-			wasXs: this.$vuetify.breakpoint.xsOnly
+			wasXs: this.$vuetify.breakpoint.xsOnly,
+			showGlobalStatus: false
 		}
 	},
 	methods: {
@@ -242,6 +243,8 @@ export default {
 			shadow: '#fff',			// Outer ring color
 			fallback: false			// Toggles displaying percentage in the title bar (possible values - true, false, 'force')
 		});
+
+		this.showGlobalStatus = this.$route.path === '/Dashboard'
 	},
 	watch: {
 		isPrinting(to) {
@@ -258,6 +261,9 @@ export default {
 				Piecon.setProgress(to * 100);
 			}
 			this.updateTitle();
+		},
+		$route (to){
+			this.showGlobalStatus = to.path === '/Dashboard'
 		}
 	}
 }
