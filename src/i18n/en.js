@@ -655,7 +655,7 @@ export default {
 			}
 		},
 		webcam: {
-			caption: 'Webcam Surveillance',
+			caption: 'Camera',
 			alt: '(webcam image)'
 		}
 	}
