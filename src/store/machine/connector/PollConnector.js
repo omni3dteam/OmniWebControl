@@ -20,7 +20,8 @@ export default class PollConnector extends BaseConnector {
 	static async connect(hostname, username, password) {
 		let response;
 		try {
-			response = await axios.get(`http://${hostname}/rr_connect`, {
+			const cameraUrl = `http://${hostname.replace("<defaultip>", location.host)}/rr_connect`;
+			response = await axios.get(cameraUrl, {
 				params: {
 					password,
 					time: timeToStr(new Date())

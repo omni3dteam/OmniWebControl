@@ -10,7 +10,7 @@ export default {
 	namespaced: true,
 	state: {
 		language: 'en',
-		lastHostname: location.host,
+		lastHostname: "<defaultip>",
 		darkTheme: false,
 		useBinaryPrefix: true,
 		settingsStorageLocal: false,
