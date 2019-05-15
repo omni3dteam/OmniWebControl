@@ -23,7 +23,8 @@ export const Routing = [
 				icon: 'info',
 				caption: 'menu.job.status',
 				path: '/',
-				component: Job.Status
+				component: Job.Status,
+				alias: '/Job/Status'
 			},
 			// Webcam
 			{
