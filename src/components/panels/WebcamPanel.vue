@@ -7,8 +7,8 @@ iframe {
 }
 
 img {
-	max-width: 100%;
-	max-height: 100%;
+	width: 100%;
+	height: auto;
 }
 
 .img-container {
@@ -111,7 +111,7 @@ export default {
 	},
 	methods: {
 		updateWebcam() {
-			let url = this.webcam.url;
+			let url = this.webcam.url.replace("<defaultip>", location.host);
 			if (this.webcam.useFix) {
 				url += "_" + Math.random();
 			} else {
