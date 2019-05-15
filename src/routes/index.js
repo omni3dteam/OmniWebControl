@@ -32,7 +32,8 @@ export const Routing = [
 				caption: 'menu.job.webcam',
 				path: '/Job/Webcam',
 				component: Job.Webcam,
-				condition: 'webcam'
+				condition: 'webcam',
+				hidden: true
 			}
 			// Visualiser (coming soon)
 			/* {
