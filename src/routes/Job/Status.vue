@@ -8,7 +8,7 @@
 			<v-layout row wrap full-height>
 				<v-flex order-sm2 order-md1 md3 xl5>
 					<v-layout row wrap align-center>
-						<v-flex xs7 sm6 md12>
+						<v-flex xs12 sm6 md12>
 							<job-control-panel></job-control-panel>
 						</v-flex>
 						<v-flex class="hidden-xs-only">
