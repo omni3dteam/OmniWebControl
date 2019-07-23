@@ -30,7 +30,7 @@ import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
 	computed: {
 		...mapState(['isLocal', 'connectDialogShown', 'passwordRequired']),
-		...mapState('settings', ['lastHostname']),
+		...mapState('settings', ['lastHostnamePass']),
 		mustConnect() { return !this.isLocal && !this.isConnected; }
 	},
 	data() {
@@ -53,7 +53,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.hostname = this.lastHostname;
+		this.hostname = this.lastHostnamePass;
 		this.shown = this.connectDialogShown;
 	},
 	watch: {
@@ -61,7 +61,7 @@ export default {
 		shown(to) {
 			if (to) {
 				// Fill in the last hostname
-				this.hostname = this.lastHostname;
+				this.hostname = this.lastHostnamePass;
 
 				// Auto-focus input
 				const input = this.passwordRequired ? this.$refs.password : this.$refs.hostname;

@@ -11,6 +11,7 @@ export default {
 	state: {
 		language: 'en',
 		lastHostname: "<defaultip>",
+		lastHostnamePass: location.host,
 		darkTheme: false,
 		useBinaryPrefix: true,
 		settingsStorageLocal: false,
