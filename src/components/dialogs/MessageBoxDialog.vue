@@ -1,9 +1,9 @@
 <template>
 	<v-dialog v-model="shown" :persistent="persistent">
 		<v-card>
-			<v-card-title>
+			<v-card-text>
 				<center class="headline">{{ messageBox.title }}</center>
-			</v-card-title>
+			</v-card-text>
 
 			<v-card-text>
 				<center>
@@ -48,12 +48,15 @@
 
 			<v-card-actions v-if="messageBox.mode">
 				<v-spacer></v-spacer>
-				<v-btn v-if="messageBox.mode === 1 || messageBox.mode === 3" color="blue darken-1" flat @click="cancel">
-					{{ $t(messageBox.mode === 1 ? 'generic.close' : 'generic.cancel') }}
-				</v-btn>
+				
 				<v-btn v-if="messageBox.mode === 2 || messageBox.mode === 3" color="blue darken-1" flat @click="ok">
 					{{ $t('generic.ok') }}
 				</v-btn>
+				
+				<v-btn v-if="messageBox.mode === 1 || messageBox.mode === 3" color="blue darken-1" flat @click="cancel">
+					{{ $t(messageBox.mode === 1 ? 'generic.close' : 'generic.cancel') }}
+				</v-btn>
+				
 				<v-spacer></v-spacer>
 			</v-card-actions>
 		</v-card>
