@@ -42,7 +42,7 @@
 							{{ $t('panel.jobEstimations.slicer') }}
 						</v-flex>
 						<v-flex>
-							{{ $displayTime(state.isPrinting ? Math.max(0, job.file.printTime - job.duration) : job.file.printTime) }}
+							{{ $displayTime(state.isPrinting ? Math.max(0, job.file.printTime - job.duration + job.warmUpDuration) : job.file.printTime) }}
 						</v-flex>
 					</v-layout>
 				</v-flex>

@@ -42,7 +42,7 @@
 							{{ $t('panel.jobData.jobDuration') }}
 						</v-flex>
 						<v-flex tag="span">
-							{{ $displayTime(job.duration) }}
+							{{ $displayTime(job.duration - job.warmUpDuration) }}
 						</v-flex>
 					</v-layout>
 				</v-flex>
