@@ -56,8 +56,8 @@ export default {
 				title: 'Upload & Start one or more G-Code files (drag&drop is supported as well)'
 			},
 			macros: {
-				caption: 'Upload Procedure File(s)',
-				title: 'Upload one or more procedure files (drag&drop is supported as well)'
+				caption: 'Upload Macro File(s)',
+				title: 'Upload one or more macro files (drag&drop is supported as well)'
 			},
 			filaments: {
 				caption: 'Upload Filament Configs',
@@ -97,7 +97,8 @@ export default {
 		},
 		temperature: {
 			caption: 'Temperature Chart',
-			heater: 'Heater {0}'
+			heater: 'Heater {0}',
+			noData: 'No Data'
 		}
 	},
 	dialog: {
@@ -195,7 +196,7 @@ export default {
 		display: 'Menu Directory',
 		filaments: 'Filaments Directory',
 		gcodes: 'G-Codes Directory',
-		macros: 'Procedures Directory',
+		macros: 'Macros Directory',
 		sys: 'System Directory',
 		www: 'WWW Directory'
 	},
@@ -282,7 +283,7 @@ export default {
 	input: {
 		code: {
 			send: 'Send',
-			placeholder: 'Send Code...'
+			placeholder: 'Send code...'
 		},
 		addTemperature: 'Value of new temperature',
 		addRPM: 'Value of new preset'
@@ -320,7 +321,6 @@ export default {
 			type: 'Type',
 			message: 'Event',
 			noEvents: 'No Events',
-			copy: 'Copy',
 			clear: 'Clear',
 			downloadText: 'Download as Text',
 			downloadCSV: 'Download as CSV'
@@ -329,9 +329,9 @@ export default {
 			noFilaments: 'No Filaments'
 		},
 		macro: {
-			caption: 'Procedures',
-			noMacros: 'No Procedures',
-			run: 'Run Procedure',
+			caption: 'Macros',
+			noMacros: 'No Macros',
+			run: 'Run Macro',
 			root: 'Root'
 		},
 		jobs: {
@@ -354,7 +354,7 @@ export default {
 		control: {
 			caption: 'Machine Control',
 			dashboard: 'Dashboard',
-			console: 'G-Code Console',
+			console: 'Console',
 			heightmap: 'Height Map'
 		},
 		job: {
@@ -365,9 +365,9 @@ export default {
 		},
 		files: {
 			caption: 'File Management',
-			jobs: 'G-Code Jobs',
+			jobs: 'Jobs',
 			filaments: 'Filaments',
-			macros: 'Procedures',
+			macros: 'Macros',
 			display: 'Display',
 			system: 'System',
 			web: 'Web'
@@ -419,7 +419,7 @@ export default {
 		},
 		newFilament: {
 			errorTitle: 'Failed to create filament',
-			errorTitleMacros: 'Failed to create filament procedures',
+			errorTitleMacros: 'Failed to create filament macros',
 			successTitle: 'Filament created',
 			successMessage: 'Successfully created filament {0}'
 		},
@@ -483,6 +483,7 @@ export default {
 			orMore: 'or more',
 			orLess: 'or less',
 			axes: 'Axes:',
+			notAvailable: 'height map not available',
 			numPoints: 'Number of points: {0}',
 			radius: 'Probing radius: {0}',
 			area: 'Probe area: {0}',
@@ -519,12 +520,12 @@ export default {
 			jobDuration: 'Job Duration'
 		},
 		jobEstimations: {
-			caption: 'Estimated time left',
-			filament: 'Based on Filament Usage',
-			file: 'Based on File Progress',
-			layer: 'Based on Layer Time',
-			slicer: 'Based on Slicer',
-			simulation: 'Based on Simulation'
+			caption: 'Estimations based on',
+			filament: 'Filament Usage',
+			file: 'File Progress',
+			layer: 'Layer Time',
+			slicer: 'Slicer',
+			simulation: 'Simulation'
 		},
 		jobInfo: {
 			caption: 'Job Information',
@@ -544,13 +545,14 @@ export default {
 			editMesh: 'Define Area for Mesh Compensation (M557)',
 			runMesh: 'Run Mesh Compensation (G29)',
 			loadMesh: 'Load Saved Height Map from SD Card (G29 S1)',
-			axesNotHomed: 'The following axis is not homed:|The following axes are not homed:'
+			axesNotHomed: 'The following axis is not homed:|The following axes are not homed:',
+			noAxes: 'No Axes'
 		},
 		settingsAbout: {
 			caption: 'About',
 			developedBy: 'Web Interface developed by',
 			for: 'for',
-			licensedUnder: 'Licensed under the terms of the'
+			licensedUnder: 'Modified by OMNI3D. Licensed under the terms of the'
 		},
 		settingsAppearance: {
 			caption: 'Appearance',
@@ -561,16 +563,20 @@ export default {
 		},
 		settingsCommunication: {
 			caption: 'Communication',
+			pingInterval: 'PING interval when idle (ms)',
 			ajaxRetries: 'Number of maximum AJAX retries',
 			updateInterval: 'Update interval ({0})',
 			extendedUpdateEvery: 'Extended status update interval',
-			fileTransferRetryThreshold: 'Retry threshold for file transfers ({0})'
+			fileTransferRetryThreshold: 'Retry threshold for file transfers ({0})',
+			unavailable: 'No settings available'
 		},
 		settingsElectronics: {
 			caption: 'Electronics',
 			diagnostics: 'Diagnostics',
+			board: 'Board: {0}',
 			firmware: 'Firmware: {0} ({1})',
-			dwsFirmware: 'Duet WiFi Server Version: {0}'
+			dwsFirmware: 'Duet WiFi Server Version: {0}',
+			updateNote: 'Note: You can install updates on the System page.'
 		},
 		settingsGeneral: {
 			caption: 'General',
@@ -629,7 +635,9 @@ export default {
 			mcuTempTitle: 'Minimum: {0}, Maximum: {1}',
 			vIn: 'Vin',
 			vInTitle: 'Minimum: {0}, Maximum {1}',
-			probe: 'Z-Probe|Z-Probes'
+			fanRPM: 'Fan RPM',
+			probe: 'Z-Probe|Z-Probes',
+			noStatus: 'No Status'
 		},
 		tools: {
 			caption: 'Tools',
@@ -651,12 +659,14 @@ export default {
 				caption: 'Extra',
 				sensor: 'Sensor',
 				value: 'Value',
-				showInChart: 'Show in Chart'
-			}
+				showInChart: 'Show in Chart',
+				noItems: 'No Extra Heaters'
+			},
+			noTools: 'No Tools'
 		},
 		webcam: {
 			caption: 'Camera',
-			alt: '(webcam image)'
+			alt: ''
 		}
 	}
 }
