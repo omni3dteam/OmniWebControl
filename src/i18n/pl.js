@@ -29,10 +29,12 @@ export default {
 			title: 'Wymuś natychmiastowe uruchomienie ponowne (M112+M999)'
 		},
 		home: {
-			caption: 'Bazuj {0}',
 			captionAll: 'Bazuj XYZ',
-			title: 'Bazuj oś {0} (G28 {0})',
-			titleAll: 'Bazuj wszystkie osie (G28)'
+			titleAll: 'Bazuj wszystkie osie (G28)',
+			captionXY: 'Bazuj XY',
+			titleXY: 'Bazuj XY ',
+			caption: 'Bazuj {0}',
+			title: 'Bazuj oś {0} (G28 {0})'
 		},
 		newDirectory: {
 			caption: 'Nowy folder'
@@ -354,6 +356,7 @@ export default {
 		control: {
 			caption: 'Maszyna',
 			dashboard: 'Obsługa',
+			events: 'Zdarzenia',
 			console: 'Konsola',
 			heightmap: 'Mapa platformy'
 		},
@@ -550,7 +553,7 @@ export default {
 			caption: 'About',
 			developedBy: 'Web Interface developed by',
 			for: 'for',
-			licensedUnder: 'Modified by OMNI3D. Licensed under the terms of the'
+			licensedUnder: 'Licensed under the terms of the'
 		},
 		settingsAppearance: {
 			caption: 'Wygląd',

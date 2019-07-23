@@ -30,10 +30,12 @@ export default {
 			title: 'Forcer un redémarrage logiciel immédiat (M112+M999)'
 		},
 		home: {
-			caption: 'Origine {0}',
 			captionAll: 'Tout aux Origines',
-			title: 'Déplace l\'axe {0} à son origine (G28 {0})',
-			titleAll: 'Déplace tout les axes aux origines (G28)'
+			titleAll: 'Déplace tout les axes aux origines (G28)',
+			captionXY: 'Origine XY',
+			titleXY: 'Origine XY',
+			caption: 'Origine {0}',
+			title: 'Déplace l\'axe {0} à son origine (G28 {0})'
 		},
 		newDirectory: {
 			caption: 'Nouveau Dossier'
@@ -355,6 +357,7 @@ export default {
 		control: {
 			caption: 'Contrôle de la Machine',
 			dashboard: 'Tableau de Bord',
+			events: 'Événements',
 			console: 'Console',
 			heightmap: 'Carte de Hauteur'
 		},
@@ -666,8 +669,8 @@ export default {
 			noTools: 'Pas d\'Outils'
 		},
 		webcam: {
-			caption: 'Surveillance Webcam',
-			alt: '(webcam image)'
+			caption: 'Caméra',
+			alt: ''
 		}
 	}
 }

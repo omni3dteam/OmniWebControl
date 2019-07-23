@@ -29,10 +29,12 @@ export default {
 			title: 'Erzwingt einen sofortingen Softwarereset (M112+M999)'
 		},
 		home: {
-			caption: 'Referenziere {0}',
 			captionAll: 'Alle Referenzieren',
-			title: 'Referenziere die {0}-Achse (G28 {0})',
-			titleAll: 'Alle Achsen referenzieren (G28)'
+			titleAll: 'Alle Achsen referenzieren (G28)',
+			captionXY: 'Referenziere XY',
+			titleXY: 'Referenziere XY',
+			caption: 'Referenziere {0}',
+			title: 'Referenziere die {0}-Achse (G28 {0})'
 		},
 		newDirectory: {
 			caption: 'Neues Verzeichnis'
@@ -354,6 +356,7 @@ export default {
 		control: {
 			caption: 'Maschinensteuerung',
 			dashboard: 'Übersicht',
+			events: 'Veranstaltungen',
 			console: 'Konsole',
 			heightmap: 'Höhenkarte'
 		},
@@ -665,8 +668,8 @@ export default {
 			noTools: 'Keine Werkzeuge'
 		},
 		webcam: {
-			caption: 'Webcamüberwachung',
-			alt: '(webcam bild)'
+			caption: 'Kamera',
+			alt: ''
 		}
 	}
 }

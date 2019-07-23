@@ -29,10 +29,12 @@ export default {
 			title: 'Enforce an immediate software reset (M112+M999)'
 		},
 		home: {
-			caption: 'Home {0}',
 			captionAll: 'Home All',
-			title: 'Home the {0} axis (G28 {0})',
-			titleAll: 'Home all axes (G28)'
+			titleAll: 'Home all axes (G28)',
+			captionXY: 'Home XY',
+			titleXY: 'Home XY axes',
+			caption: 'Home {0}',
+			title: 'Home the {0} axis (G28 {0})'
 		},
 		newDirectory: {
 			caption: 'New Directory'
@@ -56,8 +58,8 @@ export default {
 				title: 'Upload & Start one or more G-Code files (drag&drop is supported as well)'
 			},
 			macros: {
-				caption: 'Upload Macro File(s)',
-				title: 'Upload one or more macro files (drag&drop is supported as well)'
+				caption: 'Upload Procedure File(s)',
+				title: 'Upload one or more procedure files (drag&drop is supported as well)'
 			},
 			filaments: {
 				caption: 'Upload Filament Configs',
@@ -196,7 +198,7 @@ export default {
 		display: 'Menu Directory',
 		filaments: 'Filaments Directory',
 		gcodes: 'G-Codes Directory',
-		macros: 'Macros Directory',
+		macros: 'Procedures Directory',
 		sys: 'System Directory',
 		www: 'WWW Directory'
 	},
@@ -329,9 +331,9 @@ export default {
 			noFilaments: 'No Filaments'
 		},
 		macro: {
-			caption: 'Macros',
-			noMacros: 'No Macros',
-			run: 'Run Macro',
+			caption: 'Procedures',
+			noMacros: 'No Procedures',
+			run: 'Run Procedure',
 			root: 'Root'
 		},
 		jobs: {
@@ -354,6 +356,7 @@ export default {
 		control: {
 			caption: 'Machine Control',
 			dashboard: 'Dashboard',
+			events: 'Events',
 			console: 'Console',
 			heightmap: 'Height Map'
 		},
@@ -365,9 +368,9 @@ export default {
 		},
 		files: {
 			caption: 'File Management',
-			jobs: 'Jobs',
+			jobs: 'G-Code Files',
 			filaments: 'Filaments',
-			macros: 'Macros',
+			macros: 'Procedures',
 			display: 'Display',
 			system: 'System',
 			web: 'Web'
@@ -419,7 +422,7 @@ export default {
 		},
 		newFilament: {
 			errorTitle: 'Failed to create filament',
-			errorTitleMacros: 'Failed to create filament macros',
+			errorTitleMacros: 'Failed to create filament procedures',
 			successTitle: 'Filament created',
 			successMessage: 'Successfully created filament {0}'
 		},
@@ -552,7 +555,7 @@ export default {
 			caption: 'About',
 			developedBy: 'Web Interface developed by',
 			for: 'for',
-			licensedUnder: 'Modified by OMNI3D. Licensed under the terms of the'
+			licensedUnder: 'Licensed under the terms of the'
 		},
 		settingsAppearance: {
 			caption: 'Appearance',
