@@ -219,6 +219,21 @@ export default function(connector) {
 					return getters.fractionPrinted;
 				}
 				return state.job.lastFileName ? 1 : 0;
+			},
+			smartEstimate(state, getters) {
+				let progress = getters.jobProgress*100
+				let timeLeft = 0
+
+				if(progress>20 && progress<80){
+					let weight = (progress-20)/60;
+					let newTime = state.job.timesLeft.file * (weight) + Math.max(0, state.job.file.printTime - state.job.duration + state.job.warmUpDuration) * (1-weight);
+					timeLeft = newTime ;}
+				else if( progress <= 20){
+					timeLeft = Math.max(0, state.job.file.printTime - state.job.duration + state.job.warmUpDuration);}
+				else{
+					timeLeft = state.job.timesLeft.file;}
+					
+				return timeLeft;
 			}
 		},
 		mutations: {
