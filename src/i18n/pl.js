@@ -522,12 +522,13 @@ export default {
 			jobDuration: 'Czas Druku'
 		},
 		jobEstimations: {
-			caption: 'Szacowany pozostały czas (na podstawie):',
+			caption: 'Szacowanie',
 			filament: 'Zużycia filamentu',
 			file: 'Zaawansowania pliku',
 			layer: 'Czasu druku warstw',
 			slicer: 'Szacunków slicera',
-			simulation: 'Symulacji'
+			simulation: 'Na Podstawie Symulacji',
+			smart: 'Pozostały Czas'
 		},
 		jobInfo: {
 			caption: 'Dane pliku',

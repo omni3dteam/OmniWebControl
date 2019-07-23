@@ -523,12 +523,13 @@ export default {
 			jobDuration: 'Job Duration'
 		},
 		jobEstimations: {
-			caption: 'Estimations based on',
-			filament: 'Filament Usage',
-			file: 'File Progress',
-			layer: 'Layer Time',
-			slicer: 'Slicer',
-			simulation: 'Simulation'
+			caption: 'Estimation',
+			filament: 'Filament Usage Estimation',
+			file: 'File Progress Estimation',
+			layer: 'Layer Time Estimation',
+			slicer: 'Slicer Estimation',
+			simulation: 'Simulated Estimation',
+			smart: 'Time Left'
 		},
 		jobInfo: {
 			caption: 'Job Information',

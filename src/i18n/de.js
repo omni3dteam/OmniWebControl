@@ -523,12 +523,13 @@ export default {
 			jobDuration: 'Auftragsdauer'
 		},
 		jobEstimations: {
-			caption: 'Schätzungen basierend auf',
+			caption: 'Einschätzung',
 			filament: 'Filamentverbrauch',
 			file: 'Dateifortschritt',
 			layer: 'Schichtdauer',
 			slicer: 'Slicer',
-			simulation: 'Simulation'
+			simulation: 'Simulation',
+			smart: 'Verbleibende Zeit'
 		},
 		jobInfo: {
 			caption: 'Jobinformationen',
