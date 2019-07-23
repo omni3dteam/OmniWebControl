@@ -13,8 +13,8 @@
 <template>
 	<v-card>
 		<v-card-title class="pt-2 pb-0">
-			<code-btn color="primary" small code="G28" :title="$t('button.home.titleAll')" class="ml-0 hidden-sm-and-down">
-				{{ $t('button.home.captionAll') }}
+			<code-btn color="primary" small code="G28 XY" :title="$t('button.home.titleXY')">
+				{{ $t('button.home.captionXY') }}
 			</code-btn>
 
 			<v-spacer class="hidden-sm-and-down"></v-spacer>
@@ -61,7 +61,7 @@
 		</v-card-title>
 
 		<v-card-text class="pt-0 pb-2">
-			<!-- Mobile home buttons -->
+			<!-- Mobile home buttons 
 			<v-layout justify-center row wrap class="hidden-md-and-up">
 				<v-flex>
 					<code-btn color="primary" code="G28" :title="$t('button.home.titleAll')" block>
@@ -74,10 +74,10 @@
 						{{ $t('button.home.caption', [axis.letter]) }}
 					</code-btn>
 				</v-flex>
-			</v-layout>
+			</v-layout> -->
 
 			<v-layout row>
-				<!-- Regular home buttons -->
+				<!-- Regular home buttons
 				<v-flex shrink class="hidden-sm-and-down">
 					<v-layout column>
 						<v-flex v-for="axis in displayedAxes" :key="axis.letter">
@@ -87,7 +87,7 @@
 							</code-btn>
 						</v-flex>
 					</v-layout>
-				</v-flex>
+				</v-flex> -->
 
 				<!-- Jog control -->
 				<v-flex>
