@@ -56,6 +56,13 @@ export const Routing = [
 				path: '/Dashboard',
 				component: Control.Dashboard
 			},
+			// Events
+			{
+				icon: 'code',
+				caption: 'menu.control.events',
+				path: '/Events',
+				component: Control.Events,
+			},
 			// Console
 			{
 				icon: 'code',
@@ -138,7 +145,7 @@ export const Routing = [
 				path: '/Settings/Machine',
 				component: Settings.Machine,
 				hidden: true
-			}
+			},
 			// Update (coming soon)
 			/* {
 				icon: 'update',
