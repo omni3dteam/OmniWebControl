@@ -89,6 +89,13 @@ export default function(connector) {
 				timeout: null,
 				axisControls: []						// provides axis indices
 			},
+			procedureBox: {
+				buttons: null,
+				procedureName: null,
+				stepName: null,
+				step_current: null,
+				step_total: null
+			},
 			move: {
 				axes: [
 					new Axis({

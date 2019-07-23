@@ -141,6 +141,7 @@ a:not(:hover) {
 		<connect-dialog></connect-dialog>
 		<connection-dialog></connection-dialog>
 		<messagebox-dialog></messagebox-dialog>
+		<procedurebox-dialog></procedurebox-dialog>
 	</v-app>
 </template>
 

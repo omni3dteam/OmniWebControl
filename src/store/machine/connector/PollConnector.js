@@ -62,6 +62,7 @@ export default class PollConnector extends BaseConnector {
 	currentFileInfo = new FileInfo()
 	printStats = {}
 	messageBoxShown = false;
+	procedureBoxShown = false;
 
 	constructor(hostname, password, responseData) {
 		super(hostname);
@@ -526,6 +527,7 @@ export default class PollConnector extends BaseConnector {
 
 			// Message Box
 			const msgBox = response.data.output.msgBox;
+			
 			if (msgBox) {
 				this.messageBoxShown = true;
 				quickPatch(newData, {
@@ -553,7 +555,43 @@ export default class PollConnector extends BaseConnector {
 				}
 			});
 		}
+		
+		
+		// Procedure Message Box
+		if (response.data.procedure && response.data.procedure.procedureName != 'none') {
 
+		const procBox = response.data.procedure;
+
+			if (procBox) {
+				this.procedureBoxShown = true;
+				quickPatch(newData, {
+					procedureBox: {
+						buttons: procBox.buttons,
+						procedureName: procBox.procedureName,
+						stepName: procBox.stepName,
+						step_current: procBox.step.current,
+						step_total: procBox.step.total
+					}
+				});
+			} else if (this.procedureBoxShown) {
+				this.procedureBoxShown = false;
+				quickPatch(newData, {
+					procedureBox: {
+						buttons: null
+					}
+				});
+			}
+		} else if (this.procedureBoxShown) {
+			this.procedureBoxShown = false;
+			quickPatch(newData, {
+				procedureBox: {
+					buttons: null
+				}
+			});
+		}
+
+		
+		
 		// Spindles
 		if (response.data.spindles) {
 			quickPatch(newData, {
