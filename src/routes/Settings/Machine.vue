@@ -16,8 +16,12 @@
 					<settings-communication-panel></settings-communication-panel>
 				</v-flex>
 				<v-flex>
+					<settings-webcam-panel></settings-webcam-panel>
+				</v-flex>		
+				<v-flex>
 					<settings-list-items-panel></settings-list-items-panel>
 				</v-flex>
+				
 			</v-layout>
 		</v-flex>
 	</v-layout>

@@ -20,11 +20,8 @@
 			</v-layout>
 		</v-flex>
 
-		<v-flex class="hidden-xs-only" sm4 md4 lg3 xl3>
+		<v-flex sm4 md4 lg3 xl3>
 			<macro-list></macro-list>
-			<v-flex>
-				<fans-panel></fans-panel>
-			</v-flex>
 			<v-flex>
 				<speed-factor-panel></speed-factor-panel>
 			</v-flex>
