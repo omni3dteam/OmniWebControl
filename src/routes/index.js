@@ -97,7 +97,7 @@ export const Routing = [
 			{
 				icon: 'polymer',
 				caption: 'menu.files.macros',
-				path: '/Files/Macros',
+				path: '/Files/Procedures',
 				component: Files.Macros
 			},
 			// Filaments
