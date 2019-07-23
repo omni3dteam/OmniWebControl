@@ -8,11 +8,11 @@ module.exports = {
 			new CompressionPlugin({
 				cache: true
 			}),
-			new ZipPlugin({
-				filename: 'DuetWebControl-mini.zip',
-				include: [/\.gz$/, /\.woff$/, /\.woff2$/],
-				exclude: [/\.map.gz$/]
-			}),
+			//new ZipPlugin({
+				//filename: 'DuetWebControl-mini.zip',
+				//include: [/\.gz$/, /\.woff$/, /\.woff2$/],
+				//exclude: [/\.map.gz$/]
+			//}),
 			new ZipPlugin({
 				filename: 'DuetWebControl.zip',
 				include: [/\.gz$/, /\.woff$/, /\.woff2$/],
