@@ -1,5 +1,5 @@
 <template>
-	<v-dialog v-model="shown" persistent>
+	<v-dialog v-model="shown" persistent  max-width="800">
 		<v-card>
 			<v-card-text>
 				<center class="headline">{{ procedureBox.procedureName }}</center>
@@ -38,6 +38,8 @@
 				<v-spacer></v-spacer>
 			</v-card-actions>
 		</v-card>
+		<v-card height=60></v-card>
+		<center><v-card><emergency-btn></emergency-btn></v-card></center>
 	</v-dialog>
 </template>
 
