@@ -56,11 +56,6 @@ a:not(:hover) {
 <template>
 	<v-app :dark="darkTheme">
 		<v-navigation-drawer persistent clipped v-model="drawer" enable-resize-watcher fixed app>
-			<div class="pa-2 hidden-sm-and-up">
-				<connect-btn v-if="isLocal" class="mb-3" block></connect-btn>
-				<emergency-btn block></emergency-btn>
-			</div>
-
 			<v-list class="pt-0" :expand="$vuetify.breakpoint.mdAndUp">
 				<v-list-group v-for="(category, index) in routing" :key="index" :prepend-icon="category.icon" no-action :value="isExpanded(category)">
 					<v-list-tile slot="activator">
@@ -77,6 +72,11 @@ a:not(:hover) {
 					</template>
 				</v-list-group>
 			</v-list>
+			
+			<div class="pa-2 hidden-sm-and-up">
+				<connect-btn v-if="isLocal" class="mb-3" block></connect-btn>
+				<emergency-btn block></emergency-btn>
+			</div>
 		</v-navigation-drawer>
 
 		<v-toolbar ref="appToolbar" app clipped-left>
@@ -97,10 +97,6 @@ a:not(:hover) {
 			<upload-btn target="start" class="hidden-sm-and-down"></upload-btn>
 			<emergency-btn class="hidden-xs-only"></emergency-btn>
 
-			<v-btn icon class="hidden-md-and-up" :class="toggleGlobalContainerColor" @click="hideGlobalContainer = !hideGlobalContainer">
-				<v-icon>aspect_ratio</v-icon>
-			</v-btn>
-			<!-- TODO: Add quick actions and UI designer here -->
 			<!--<v-btn icon class="hidden-sm-and-down" @click="rightDrawer = !rightDrawer">
 				<v-icon>menu</v-icon>
 			</v-btn>-->
