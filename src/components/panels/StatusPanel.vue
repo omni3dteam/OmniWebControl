@@ -81,7 +81,7 @@ a:not(:hover) {
 											{{ $t('panel.status.extruderDrive', [index]) }}
 										</v-flex>
 										<v-flex tag="span">
-											{{ $display(move.drives[index + move.axes.length].position, 1) }}
+											{{ $display((move.drives[index + move.axes.length].position)/1000, 3, 'm') }}
 										</v-flex>
 									</v-layout>
 								</v-flex>
