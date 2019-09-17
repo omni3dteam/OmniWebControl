@@ -8,23 +8,21 @@
 			<v-layout row wrap full-height>
 				<v-flex order-sm2 order-md1 md3 xl5>
 					<v-layout row wrap align-center>
-						<v-flex xs12 sm6 md12>
+						<v-flex xs12 sm12 md12>
 							<job-control-panel></job-control-panel>
 						</v-flex>
 						
-						<v-flex xs6 sm6 md12>
+						<v-flex xs12 sm12 md12>
 							<job-estimations-panel></job-estimations-panel>
 						</v-flex>
 						
-						<v-flex xs6 sm6 md12>
+						<v-flex xs12 sm12 md12>
 							<job-data-panel></job-data-panel>
 						</v-flex>
 						
-						<v-flex class="hidden-xs-only" sm6 md12>
+						<v-flex class="hidden-xs-only" sm12 md12>
 							<job-info-panel></job-info-panel>
 						</v-flex>
-					
-						
 					</v-layout>
 				</v-flex>
 				<v-flex order-sm1 order-md2 md9 xl7 d-flex>
