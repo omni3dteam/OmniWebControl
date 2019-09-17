@@ -13,8 +13,10 @@
 					<settings-about-panel></settings-about-panel>
 				</v-flex>
 				<v-flex>
-					<upload-btn class="hidden-sm-and-down" :directory="directory" target="sys" color="primary"></upload-btn>
+					<upload-btn :directory="directory" target="sys" color="primary" block></upload-btn>
+					<upload-btn :directory="directory" target="macros" color="primary" block></upload-btn>
 				</v-flex>
+				
 			</v-layout>
 		</v-flex>
 	</v-layout>
