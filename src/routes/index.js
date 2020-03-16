@@ -13,7 +13,7 @@ import Settings from './Settings'
 Vue.use(VueRouter)
 
 export const Routing = [
-	// Job
+	/* Job
 	{
 		icon: 'print',
 		caption: 'menu.job.caption',
@@ -36,19 +36,28 @@ export const Routing = [
 				hidden: true
 			}
 			// Visualiser (coming soon)
-			/* {
+			 {
 				icon: 'theaters',
 				caption: 'menu.job.visualiser',
 				path: '/Job/Visualiser',
 				component: Job.Visualiser
-			} */
+			} 
 		]
-	},
+	},*/
+	
 	// Control
 	{
 		icon: 'tune',
 		caption: 'menu.control.caption',
 		pages: [
+			// Status
+			{
+				icon: 'info',
+				caption: 'menu.job.status',
+				path: '/',
+				component: Job.Status,
+				alias: '/Job/Status'
+			},
 			// Dashboard
 			{
 				icon: 'dashboard',
@@ -62,6 +71,13 @@ export const Routing = [
 				caption: 'menu.control.events',
 				path: '/Events',
 				component: Control.Events,
+			},
+			// Jobs
+			{
+				icon: 'play_arrow',
+				caption: 'menu.files.jobs',
+				path: '/Files/Jobs',
+				component: Files.Jobs
 			},
 			// Console
 			{
@@ -81,17 +97,25 @@ export const Routing = [
 			}
 		]
 	},
-	// Files
+	// Settings
 	{
-		icon: 'sd_storage',
-		caption: 'menu.files.caption',
+		icon: 'build',
+		caption: 'menu.settings.caption',
 		pages: [
-			// Jobs
+			// General
 			{
-				icon: 'play_arrow',
-				caption: 'menu.files.jobs',
-				path: '/Files/Jobs',
-				component: Files.Jobs
+				icon: 'settings',
+				caption: 'menu.settings.general',
+				path: '/Settings/General',
+				component: Settings.General
+			},
+			// Machine
+			{
+				icon: 'settings_applications',
+				caption: 'menu.settings.machine',
+				path: '/Settings/Machine',
+				component: Settings.Machine,
+				hidden: true
 			},
 			// Macros
 			{
@@ -125,35 +149,6 @@ export const Routing = [
 				component: Files.System,
 				hidden: true
 			}
-		]
-	},
-	// Settings
-	{
-		icon: 'build',
-		caption: 'menu.settings.caption',
-		pages: [
-			// General
-			{
-				icon: 'settings',
-				caption: 'menu.settings.general',
-				path: '/Settings/General',
-				component: Settings.General
-			},
-			// Machine
-			{
-				icon: 'settings_applications',
-				caption: 'menu.settings.machine',
-				path: '/Settings/Machine',
-				component: Settings.Machine,
-				hidden: true
-			},
-			// Update (coming soon)
-			/* {
-				icon: 'update',
-				caption: 'menu.settings.update',
-				path: '/Settings/Update',
-				component: Settings.Update
-			} */
 		]
 	}
 ]
