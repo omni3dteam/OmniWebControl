@@ -43,6 +43,9 @@ export default function(hostname, connector) {
 			events: [],								// provides machine events in the form of { date, type, title, message }
 			isReconnecting: false
 		},
+		getters: {
+			hasTemperaturesToDisplay: state => state.model.heat.heaters.length || state.settings.displayedExtraTemperatures.length
+		},
 		actions: {
 			...mapConnectorActions(connector, ['reconnect', 'sendCode', 'upload', 'download', 'getFileInfo']),
 
