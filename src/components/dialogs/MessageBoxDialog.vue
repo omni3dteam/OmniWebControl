@@ -1,5 +1,5 @@
 <template>
-	<v-dialog v-model="shown" :persistent="persistent">
+	<v-dialog v-model="shown" persistent  max-width="800">
 		<v-card>
 			<v-card-text>
 				<center class="headline">{{ messageBox.title }}</center>
@@ -107,9 +107,12 @@ export default {
 		}
 	},
 	watch: {
-		'messageBox.mode'(to) {
-			this.shown = (to !== null);
-			this.persistent = (to === 1);
+		messageBox: {
+			deep: true,
+			handler(to) {
+				this.shown = (to.mode !== null);
+				this.persistent = (to.mode === 1);
+			}
 		}
 	}
 }

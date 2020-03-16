@@ -95,10 +95,14 @@ export default {
 		}
 	},
 	watch: {
-		'procedureBox.buttons'(to) {
-			this.shown = (to !== null);
-			this.persistent = (to === 1);
+		procedureBox: {
+			deep: true,
+			handler(to) {
+				this.shown = (to.buttons !== null);
+				this.persistent = (to.buttons === 1);
+			}
 		}
-	}
+	}	
 }
 </script>
+
