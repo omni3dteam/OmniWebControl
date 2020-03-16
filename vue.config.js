@@ -14,7 +14,7 @@ module.exports = {
 				//exclude: [/\.map.gz$/]
 			//}),
 			new ZipPlugin({
-				filename: 'DuetWebControl.zip',
+				filename: 'OmniWebControl.zip',
 				include: [/\.gz$/, /\.woff$/, /\.woff2$/],
 			})
 		] : []
