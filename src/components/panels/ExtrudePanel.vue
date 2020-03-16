@@ -156,10 +156,11 @@ export default {
 			this.busy = true;
 			try {
 				const amount = amounts.map(amount => extrude ? amount : -amount).reduce((a, b) => `${a}:${b}`);
-				// TODO let users decide if they want to send M400 as well so this call blocks until the extrusion is complete
-				await this.sendCode(`G1 E${amount} F${this.feedrate * 60}`);
+				// TODO let users decide if they want to send M400 as well so this call blocks until the extrusion is complete 
+				// M120\nM83\nG1 E<val1> F<val2>\nM121\n
+				await this.sendCode(`M120\nM83\nG1 E${amount} F${this.feedrate * 60}\nM121\n`);
 			} catch (e) {
-				// handled before we get here
+				// handled before we get here 
 			}
 			this.busy = false;
 		},
