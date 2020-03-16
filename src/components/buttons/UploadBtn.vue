@@ -47,7 +47,6 @@ export default {
 				case 'start': return '.g,.gcode,.gc,.gco,.nc,.ngc,.tap';
 				case 'macros': return '.g,.gcode,.gc,.gco,.nc,.ngc';
 				case 'filaments': return '.zip';
-				case 'display': return '*';
 				case 'sys': return '.zip,.bin,.json,.g,.csv';
 				case 'www': return '.zip,.csv,.json,.htm,.html,.ico,.xml,.css,.map,.js,.ttf,.eot,.svg,.woff,.woff2,.jpeg,.jpg,.png,.gz';
 				case 'update': return '.zip,.bin';
@@ -64,7 +63,6 @@ export default {
 				case 'start': return Path.gcodes;
 				case 'macros': return Path.macros;
 				case 'filaments': return Path.filaments;
-				case 'display': return Path.display;
 				case 'sys': return Path.sys;
 				case 'www': return Path.www;
 				case 'update': return Path.sys;
@@ -87,6 +85,7 @@ export default {
 				firmware: false,
 				wifiServer: false,
 				wifiServerSpiffs: false,
+				display: false,
 
 				codeSent: false
 			}
@@ -178,6 +177,7 @@ export default {
 			this.updates.firmware = false;
 			this.updates.wifiServer = false;
 			this.updates.wifiServerSpiffs = false;
+			this.updates.display = false;
 
 			let success = true;
 			this.uploading = true;
@@ -186,13 +186,16 @@ export default {
 
 				// Adjust filename if an update is being uploaded
 				let filename = Path.combine(this.destinationDirectory, content.name);
-				if (this.target === 'sys' || this.target === 'update') {
+				if (this.target === 'sys' || this.target === 'update' || this.target === 'display') {
 					if (this.isWebFile(content.name)) {
 						filename = Path.combine(Path.www, content.name);
 						this.updates.webInterface |= /index.html(\.gz)?/i.test(content.name);
 					} else if (this.board.firmwareFileRegEx.test(content.name)) {
 						filename = Path.combine(Path.sys, this.board.firmwareFile);
 						this.updates.firmware = true;
+					} else if (/OmniDisplayFirmware(.*)\.bin/i.test(content.name)) {
+						filename = Path.combine(Path.sys, 'OmniDisplayFirmware.bin');
+						this.updates.display = true;
 					} else if (this.board.hasWiFi) {
 						if ((/DuetWiFiSocketServer(.*)\.bin/i.test(content.name) || /DuetWiFiServer(.*)\.bin/i.test(content.name))) {
 							filename = Path.combine(Path.sys, 'DuetWiFiServer.bin');
@@ -200,9 +203,10 @@ export default {
 						} else if (/DuetWebControl(.*)\.bin/i.test(content.name)) {
 							filename = Path.combine(Path.sys, 'DuetWebControl.bin');
 							this.updates.wifiServerSpiffs = true;
-						}
-					}
+						}	
+					} 
 				}
+				
 
 				try {
 					// Start uploading
@@ -231,7 +235,7 @@ export default {
 				}
 				this.$emit('uploadComplete', files);
 
-				if (this.updates.firmware || this.updates.wifiServer || this.updates.wifiServerSpiffs) {
+				if (this.updates.firmware || this.updates.wifiServer || this.updates.wifiServerSpiffs || this.updates.display) {
 					// Ask user to perform an update
 					this.confirmUpdate = true;
 				} else if (!this.isLocal && this.updates.webInterface) {
@@ -251,6 +255,9 @@ export default {
 			}
 			if (this.updates.wifiServerSpiffs) {
 				modules.push('2');
+			}
+			if (this.updates.display) {
+				modules.push('4');
 			}
 
 			this.updates.codeSent = true;
