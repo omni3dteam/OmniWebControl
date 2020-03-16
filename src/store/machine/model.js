@@ -224,11 +224,11 @@ export default function(connector) {
 				let progress = getters.jobProgress*100
 				let timeLeft = 0
 
-				if(progress>20 && progress<80){
-					let weight = (progress-20)/60;
+				if(progress>40 && progress<80){
+					let weight = (progress-40)/60;
 					let newTime = state.job.timesLeft.file * (weight) + Math.max(0, state.job.file.printTime - state.job.duration + state.job.warmUpDuration) * (1-weight);
 					timeLeft = newTime ;}
-				else if( progress <= 20){
+				else if( progress <= 40){
 					timeLeft = Math.max(0, state.job.file.printTime - state.job.duration + state.job.warmUpDuration);}
 				else{
 					timeLeft = state.job.timesLeft.file;}
