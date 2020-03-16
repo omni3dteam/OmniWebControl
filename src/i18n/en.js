@@ -66,8 +66,8 @@ export default {
 				title: 'Upload one or more filament configurations (drag&drop is supported as well)'
 			},
 			display: {
-				caption: 'Upload Menu Files',
-				title: 'Upload one or more menu files (drag&drop is supported as well)'
+				caption: 'Upload Display File',
+				title: 'Upload display file (drag&drop is supported as well)'
 			},
 			sys: {
 				caption: 'Upload System Files',
@@ -368,7 +368,7 @@ export default {
 		},
 		files: {
 			caption: 'File Management',
-			jobs: 'G-Code Files',
+			jobs: 'Files',
 			filaments: 'Filaments',
 			macros: 'Procedures',
 			display: 'Display',
@@ -436,7 +436,7 @@ export default {
 		},
 		responseTooLong: 'Response too long, see Console',
 		upload: {
-			title: 'Uploading {0} @ {1}, {2}% complete',
+			title: 'Uploading {0}, {2}% complete',
 			message: 'Please stand by while the file is being uploaded...',
 			success: 'Upload of {0} successful after {1}',
 			successMulti: 'Successfully uploaded {0} files',
@@ -555,7 +555,7 @@ export default {
 		settingsAbout: {
 			caption: 'About',
 			developedBy: 'Web Interface developed by',
-			for: 'for',
+			for: 'and ',
 			licensedUnder: 'Licensed under the terms of the'
 		},
 		settingsAppearance: {
@@ -578,7 +578,7 @@ export default {
 			caption: 'Electronics',
 			diagnostics: 'Diagnostics',
 			board: 'Board: {0}',
-			firmware: 'Firmware: {0} ({1})',
+			firmware: 'Firmware: {0} {1}',
 			dwsFirmware: 'Duet WiFi Server Version: {0}',
 			updateNote: 'Note: You can install updates on the System page.'
 		},

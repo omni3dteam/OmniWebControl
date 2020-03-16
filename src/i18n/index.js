@@ -7,6 +7,7 @@ import en from './en.js'
 import de from './de.js'
 import fr from './fr.js'
 import pl from './pl.js'
+//import ru from './ru.js'
 
 Vue.use(VueI18n)
 
@@ -49,6 +50,7 @@ export default new VueI18n({
 		en,
 		de,
 		fr,
-		pl
+		pl//,
+		//ru
 	}
 })

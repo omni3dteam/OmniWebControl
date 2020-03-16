@@ -67,8 +67,8 @@ export default {
 				title: 'Envoyer une ou plusieures configuration de filament (le glisser/déposer est supporté)'
 			},
 			display: {
-				caption: 'Envoyer Fichiers Menu',
-				title: 'Envoyer un ou plusieurs fichiers menu (le glisser/déposer est supporté)'
+				caption: 'Envoyer Fichiers Écran',
+				title: 'Envoyer Fichiers Écran'
 			},
 			sys: {
 				caption: 'Envoyer Fichiers Système',
@@ -437,7 +437,7 @@ export default {
 		},
 		responseTooLong: 'Réponse trop longue, voir la Console',
 		upload: {
-			title: 'Envoi {0} @ {1}, {2}% complet',
+			title: 'Envoi {0}, {2}% complet',
 			message: 'Veuillez patienter pendant que le fichier est envoyé...',
 			success: 'Envoi de {0} réussi après {1}',
 			successMulti: 'Envoi de {0} fichiers réusssi',
@@ -556,7 +556,7 @@ export default {
 		settingsAbout: {
 			caption: 'À propos',
 			developedBy: 'Interface web dévelopée par',
-			for: 'pour',
+			for: 'et ',
 			licensedUnder: 'Sous licence selon les termes de la'
 		},
 		settingsAppearance: {
@@ -579,7 +579,7 @@ export default {
 			caption: 'Électroniques',
 			diagnostics: 'Diagnostiques',
 			board: 'Circuit: {0}',
-			firmware: 'Firmware: {0} ({1})',
+			firmware: 'Firmware: {0} {1}',
 			dwsFirmware: 'Duet WiFi Server Version: {0}',
 			updateNote: 'Remarque: Vous pouvez installer les mises à jour sur la page Système.'
 		},

@@ -66,11 +66,11 @@ export default {
                 title: 'Eine oder mehr Filamentkonfigurationen hochladen (Drag&Drop wird ebenfalls unterstützt)'
 			},
 			display: {
-				caption: 'Menüdatei(en) hochladen',
-				title: 'Eine oder mehr Menüdateien hochladen (Drag&Drop wird ebenfalls unterstützt)'
+				caption: 'Anzeige aktualisieren',
+				title: 'Anzeige aktualisieren'
 			},
 			sys: {
-				caption: 'Systemdatei(en) hochladen',
+				caption: 'Software Aktualisieren',
                 title: 'Eine oder mehr Systemdateien hochladen (Drag&Drop wird ebenfalls unterstützt)'
 			},
 			www: {
@@ -436,7 +436,7 @@ export default {
 		},
 		responseTooLong: 'Nachricht zu lang, siehe Konsole',
 		upload: {
-			title: 'Lade {0} @ {1} hoch, {2}% abgeschlossen',
+			title: 'Lade {0}, {2}% abgeschlossen',
 			message: 'Bitte warten während die Datei hochgeladen wird...',
 			success: 'Datei {0} erfolgreich nach {1} hochgeladen',
 			successMulti: '{0} Dateien sind erfolgreich hochgeladen worden',
@@ -555,7 +555,7 @@ export default {
 		settingsAbout: {
 			caption: 'Über',
 			developedBy: 'Weboberfläche entwickelt von',
-			for: 'für',
+			for: 'und ',
 			licensedUnder: 'Lizensiert unter den Bedingungen der'
 		},
 		settingsAppearance: {
@@ -578,7 +578,7 @@ export default {
 			caption: 'Elektronik',
 			diagnostics: 'Diagnose',
 			board: 'Board: {0}',
-			firmware: 'Firmware: {0} ({1})',
+			firmware: 'Firmware: {0} {1}',
 			dwsFirmware: 'Version von Duet WiFi Server: {0}',
 			updateNote: 'Hinweis: Sie können Aktualisierungen auf der System-Seite installieren.'
 		},

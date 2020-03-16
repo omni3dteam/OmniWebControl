@@ -66,8 +66,8 @@ export default {
 				title: 'Wgraj plik/i konfiguracji filamentu'
 			},
 			display: {
-				caption: 'Upload Menu Files',
-				title: 'Upload one or more menu files (drag&drop is supported as well)'
+				caption: 'Aktualizuj wyświetlacz',
+				title: 'Aktualizuj oprogramowanie wyświetlacza'
 			},
 			sys: {
 				caption: 'Aktualizuj Oprogramowanie',
@@ -368,7 +368,7 @@ export default {
 		},
 		files: {
 			caption: 'Pliki',
-			jobs: 'Pliki G-Code',
+			jobs: 'Pliki',
 			filaments: 'Filamenty',
 			macros: 'Procedury',
 			display: 'Ekran',
@@ -436,7 +436,7 @@ export default {
 		},
 		responseTooLong: 'Przekroczony limit oczekiwania na odpowiedź',
 		upload: {
-			title: 'Wgrywanie {0} z prędkością {1}, {2}%',
+			title: 'Wgrywanie {0}, {2}%',
 			message: 'Proszę czekać, wgrywanie pliku w trakcie...',
 			success: 'Wgrano {0} po {1}',
 			successMulti: 'Poprawnie wgrano {0} plików',
@@ -553,7 +553,7 @@ export default {
 		settingsAbout: {
 			caption: 'About',
 			developedBy: 'Web Interface developed by',
-			for: 'for',
+			for: 'and ',
 			licensedUnder: 'Licensed under the terms of the'
 		},
 		settingsAppearance: {
@@ -573,7 +573,7 @@ export default {
 		settingsElectronics: {
 			caption: 'Electronics',
 			diagnostics: 'Diagnostics',
-			firmware: 'Firmware: {0} ({1})',
+			firmware: 'Firmware: {0} {1}',
 			dwsFirmware: 'Duet WiFi Server Version: {0}'
 		},
 		settingsGeneral: {
