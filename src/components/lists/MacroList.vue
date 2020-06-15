@@ -10,7 +10,6 @@
 		<v-card-title>
 			<v-icon small class="mr-1">polymer</v-icon> {{ $t('list.macro.caption') }}
 			<v-spacer></v-spacer>
-			<span v-show="isConnected">{{ directory.replace('0:/macros', $t('list.macro.root')) }}</span>
 		</v-card-title>
 
 		<v-card-text class="pa-0" v-show="loading || filelist.length || !isRootDirectory">

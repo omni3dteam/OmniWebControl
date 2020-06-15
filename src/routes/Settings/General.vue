@@ -14,7 +14,6 @@
 				</v-flex>
 				<v-flex>
 					<upload-btn :directory="directory" target="sys" color="primary" block></upload-btn>
-					<upload-btn :directory="directory" target="macros" color="primary" block></upload-btn>
 				</v-flex>
 				
 			</v-layout>

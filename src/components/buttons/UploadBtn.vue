@@ -45,7 +45,7 @@ export default {
 			switch (this.target) {
 				case 'gcodes': return '.g,.gcode,.gc,.gco,.nc,.ngc,.tap';
 				case 'start': return '.g,.gcode,.gc,.gco,.nc,.ngc,.tap';
-				case 'macros': return '.g,.gcode,.gc,.gco,.nc,.ngc';
+				case 'macros': return '.zip';
 				case 'filaments': return '.zip';
 				case 'sys': return '.zip,.bin,.json,.g,.csv';
 				case 'www': return '.zip,.csv,.json,.htm,.html,.ico,.xml,.css,.map,.js,.ttf,.eot,.svg,.woff,.woff2,.jpeg,.jpg,.png,.gz';
