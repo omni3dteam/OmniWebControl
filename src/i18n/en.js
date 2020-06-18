@@ -81,6 +81,12 @@ export default {
 				caption: 'Upload Update',
 				title: 'Upload an update package (drag&drop is supported as well)'
 			}
+		},
+		download: {
+			log: {
+				caption: 'Download Log Files',
+				title: 'Download compressed zip file with logs and configuration settings'
+			}
 		}
 	},
 	chart: {
@@ -190,6 +196,10 @@ export default {
 		update: {
 			title: 'Install updates?',
 			prompt: 'You have uploaded at least one firmware update. Would you like to install them now?'
+		},
+		downloadLog: {
+			title: 'Download Log Files',
+			prompt: 'Preparing data...'
 		},
 		inputRequired: 'Please enter a value',
 		numberRequired: 'Please enter a valid number'

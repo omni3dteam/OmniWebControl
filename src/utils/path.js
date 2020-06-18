@@ -90,6 +90,7 @@ export default {
 	filaments: '0:/filaments',
 	sys: '0:/sys',
 	www: '0:/www',
+	log: '0:/sys',
 
 	configFile: '0:/sys/config.g',
 	configBackupFile: '0:/sys/config.g.bak',

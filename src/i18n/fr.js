@@ -82,7 +82,13 @@ export default {
 				caption: 'Envoyer Mise à Jour',
 				title: 'Envoyer un paquet de mise à jour (le glisser/déposer est supporté)'
 			}
-		}
+		},
+		download: {
+			log: {
+				caption: 'Télécharger Les Fichiers Journaux',
+				title: 'Téléchargez le fichier zip compressé avec les journaux et les paramètres de configuration'
+			}
+		}		
 	},
 	chart: {
 		layer: {
@@ -191,6 +197,10 @@ export default {
 		update: {
 			title: 'Installer Mise à Jour?',
 			prompt: 'Vous avez envoyer au moins une mise à jour logiciel. Voulez-vous les installer maintenant?'
+		},
+		downloadLog: {
+			title: 'Télécharger Les Fichiers Journaux',
+			prompt: 'Préparation des données...'
 		},
 		inputRequired: 'Merci d\'entrer une nouvelle valeur',
 		numberRequired: 'Merci d\'entrer un nombre valide'

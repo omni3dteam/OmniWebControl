@@ -14,6 +14,7 @@ import NewFileDialog from './NewFileDialog.vue'
 import NewDirectoryDialog from './NewDirectoryDialog.vue'
 import ResetHeaterFaultDialog from './ResetHeaterFaultDialog.vue'
 import ProcedureBoxDialog from './ProcedureBoxDialog.vue'
+import DownloadLogDialog from './DownloadLogDialog.vue'
 
 Vue.component('confirm-dialog', ConfirmDialog)
 Vue.component('connect-dialog', ConnectDialog)
@@ -27,6 +28,7 @@ Vue.component('new-file-dialog', NewFileDialog)
 Vue.component('new-directory-dialog', NewDirectoryDialog)
 Vue.component('reset-heater-fault-dialog', ResetHeaterFaultDialog)
 Vue.component('procedurebox-dialog', ProcedureBoxDialog)
+Vue.component('download-log-dialog', DownloadLogDialog)
 
 export default {
 	ConfirmDialog,
@@ -40,5 +42,6 @@ export default {
 	NewDirectoryDialog,
 	NewFileDialog,
 	ResetHeaterFaultDialog,
-	ProcedureBoxDialog
+	ProcedureBoxDialog,
+	DownloadLogDialog
 }

@@ -81,7 +81,13 @@ export default {
 				caption: 'Update(s) hochladen',
                 title: 'Ein oder mehr Updates hochladen und installieren (Drag&Drop wird ebenfalls unterstützt)'
 			}
-		}
+		},
+		download: {
+			log: {
+				caption: 'Log Herunterladen',
+				title: 'Laden Sie die komprimierte Zip-Datei mit Protokollen und Konfigurationseinstellungen herunter'
+			}
+		}		
 	},
 	chart: {
 		layer: {
@@ -190,6 +196,10 @@ export default {
 		update: {
 			title: 'Updates installieren?',
 			prompt: 'Sie haben gerade mindestens ein Firmwareupdate hochgeladen. Möchten Sie diese jetzt installieren?'
+		},
+		downloadLog: {
+			title: 'Log Herunterladen',
+			prompt: 'Daten vorbereiten...'
 		},
 		inputRequired: 'Bitte Wert eingeben',
 		numberRequired: 'Bitte gültige Zahl eingeben'
