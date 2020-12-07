@@ -27,6 +27,9 @@
 			<v-flex d-flex>
 				<webcam-panel></webcam-panel>
 			</v-flex>
+			<v-flex xs12 sm12 md12>
+				<job-control-panel></job-control-panel>
+			</v-flex>
 			
 			
 		</v-flex>

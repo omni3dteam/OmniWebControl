@@ -16,8 +16,6 @@
 			<code-btn v-if="!state.isPrinting && processAnotherCode" color="success" block :code="processAnotherCode">
 				<v-icon class="mr-1">refresh</v-icon> {{ processAnotherText }}
 			</code-btn>
-
-			<v-switch :label="$t('panel.jobControl.autoSleep')" v-model="autoSleepActive" :disabled="uiFrozen" hide-details></v-switch>
 		</v-card-text>
 	</v-card>
 </template>
