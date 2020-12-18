@@ -108,7 +108,7 @@ export default {
 			if (!this.isConnected) {
 				return;
 			}
-			const directory = this.destinationDirectory;
+			var directory = this.destinationDirectory;
 			
 			// loadDirectory
 			await this.loadDirectory(directory);
@@ -120,7 +120,87 @@ export default {
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
-						zip.file(this.innerFilelist[i].name, blob);
+						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+					} catch (e) {
+						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
+							// should be handled before we get here
+							console.warn(e);
+						}
+						this.innerGeneration = false;
+						return;
+					}
+				}
+			}
+			
+			directory = this.destinationDirectory + "/user-procedures";
+			await this.loadDirectory(directory);
+			
+			for (let i = 0; i < this.innerFilelist.length; i++) {
+				if (this.isFileAcceptable(this.innerFilelist[i].name))
+				{
+					try {
+						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
+						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+					} catch (e) {
+						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
+							// should be handled before we get here
+							console.warn(e);
+						}
+						this.innerGeneration = false;
+						return;
+					}
+				}
+			}
+			
+			directory = this.destinationDirectory + "/procedures";
+			await this.loadDirectory(directory);
+			
+			for (let i = 0; i < this.innerFilelist.length; i++) {
+				if (this.isFileAcceptable(this.innerFilelist[i].name))
+				{
+					try {
+						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
+						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+					} catch (e) {
+						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
+							// should be handled before we get here
+							console.warn(e);
+						}
+						this.innerGeneration = false;
+						return;
+					}
+				}
+			}
+			
+			directory = this.destinationDirectory + "/macros";
+			await this.loadDirectory(directory);
+			
+			for (let i = 0; i < this.innerFilelist.length; i++) {
+				if (this.isFileAcceptable(this.innerFilelist[i].name))
+				{
+					try {
+						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
+						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+					} catch (e) {
+						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
+							// should be handled before we get here
+							console.warn(e);
+						}
+						this.innerGeneration = false;
+						return;
+					}
+				}
+			}
+			
+			directory = this.destinationDirectory + "/machine-specific";
+			await this.loadDirectory(directory);
+			
+			for (let i = 0; i < this.innerFilelist.length; i++) {
+				if (this.isFileAcceptable(this.innerFilelist[i].name))
+				{
+					try {
+						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
+						zip.folder(directory).file(this.innerFilelist[i].name, blob);
 					} catch (e) {
 						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
 							// should be handled before we get here
@@ -158,7 +238,7 @@ export default {
 				this.showDialog = true;
 				
 				// download ZIP file when it's ready
-				setTimeout(function () { this.downloadZIP() }.bind(this), 4000);
+				setTimeout(function () { this.downloadZIP() }.bind(this), 10000);
 			}
 		}
 	},
