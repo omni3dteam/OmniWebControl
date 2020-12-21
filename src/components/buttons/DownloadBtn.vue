@@ -22,7 +22,7 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 import { DisconnectedError, OperationCancelledError } from '../../utils/errors.js'
 import Path from '../../utils/path.js'
 
-const fileExtensions = ['.txt', '.g']
+const notAllowedExtensions = ['.bin', '.json']
 
 export default {
 	computed: {
@@ -69,10 +69,10 @@ export default {
 			sendCode: 'sendCode',
 		}),
 		isFileAcceptable(filename) {
-			if (fileExtensions.some(extension => filename.toLowerCase().endsWith(extension))) {
-				return true;
+			if (notAllowedExtensions.some(extension => filename.toLowerCase().endsWith(extension))) {
+				return false;
 			}
-			return false;
+			return true;
 		},
 		async sendRequest(gCode) {
 			if (!this.waitingForCode) {
@@ -116,7 +116,7 @@ export default {
 			// Download files
 			const zip = new JSZip();
 			for (let i = 0; i < this.innerFilelist.length; i++) {
-				if (this.isFileAcceptable(this.innerFilelist[i].name))
+				if (this.isFileAcceptable(this.innerFilelist[i].name) && !this.innerFilelist[i].isDirectory)
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
@@ -133,10 +133,11 @@ export default {
 			}
 			
 			directory = this.destinationDirectory + "/user-procedures";
+			//console.log(directory);
 			await this.loadDirectory(directory);
 			
 			for (let i = 0; i < this.innerFilelist.length; i++) {
-				if (this.isFileAcceptable(this.innerFilelist[i].name))
+				if (this.isFileAcceptable(this.innerFilelist[i].name) && !this.innerFilelist[i].isDirectory)
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
@@ -153,10 +154,11 @@ export default {
 			}
 			
 			directory = this.destinationDirectory + "/procedures";
+			//console.log(directory);
 			await this.loadDirectory(directory);
 			
 			for (let i = 0; i < this.innerFilelist.length; i++) {
-				if (this.isFileAcceptable(this.innerFilelist[i].name))
+				if (this.isFileAcceptable(this.innerFilelist[i].name) && !this.innerFilelist[i].isDirectory)
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
@@ -172,11 +174,75 @@ export default {
 				}
 			}
 			
-			directory = this.destinationDirectory + "/macros";
+			directory = this.destinationDirectory + "/macros/Preheat";
+			//console.log(directory);
 			await this.loadDirectory(directory);
 			
 			for (let i = 0; i < this.innerFilelist.length; i++) {
-				if (this.isFileAcceptable(this.innerFilelist[i].name))
+				if (this.isFileAcceptable(this.innerFilelist[i].name) && !this.innerFilelist[i].isDirectory)
+				{
+					try {
+						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
+						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+					} catch (e) {
+						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
+							// should be handled before we get here
+							console.warn(e);
+						}
+						this.innerGeneration = false;
+						return;
+					}
+				}
+			}
+			
+			directory = this.destinationDirectory + "/macros/Maintenance";
+			//console.log(directory);
+			await this.loadDirectory(directory);
+			
+			for (let i = 0; i < this.innerFilelist.length; i++) {
+				if (this.isFileAcceptable(this.innerFilelist[i].name) && !this.innerFilelist[i].isDirectory)
+				{
+					try {
+						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
+						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+					} catch (e) {
+						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
+							// should be handled before we get here
+							console.warn(e);
+						}
+						this.innerGeneration = false;
+						return;
+					}
+				}
+			}
+			
+			directory = this.destinationDirectory + "/macros/Maintenance/Other";
+			//console.log(directory);
+			await this.loadDirectory(directory);
+			
+			for (let i = 0; i < this.innerFilelist.length; i++) {
+				if (this.isFileAcceptable(this.innerFilelist[i].name) && !this.innerFilelist[i].isDirectory)
+				{
+					try {
+						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
+						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+					} catch (e) {
+						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
+							// should be handled before we get here
+							console.warn(e);
+						}
+						this.innerGeneration = false;
+						return;
+					}
+				}
+			}
+			
+			directory = this.destinationDirectory + "/macros/Filament";
+			//console.log(directory);
+			await this.loadDirectory(directory);
+			
+			for (let i = 0; i < this.innerFilelist.length; i++) {
+				if (this.isFileAcceptable(this.innerFilelist[i].name) && !this.innerFilelist[i].isDirectory)
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
@@ -193,10 +259,11 @@ export default {
 			}
 			
 			directory = this.destinationDirectory + "/machine-specific";
+			//console.log(directory);
 			await this.loadDirectory(directory);
 			
 			for (let i = 0; i < this.innerFilelist.length; i++) {
-				if (this.isFileAcceptable(this.innerFilelist[i].name))
+				if (this.isFileAcceptable(this.innerFilelist[i].name) && !this.innerFilelist[i].isDirectory)
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
@@ -238,7 +305,7 @@ export default {
 				this.showDialog = true;
 				
 				// download ZIP file when it's ready
-				setTimeout(function () { this.downloadZIP() }.bind(this), 10000);
+				setTimeout(function () { this.downloadZIP() }.bind(this), 2000);
 			}
 		}
 	},
