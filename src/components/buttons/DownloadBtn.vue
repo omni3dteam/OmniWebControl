@@ -120,7 +120,7 @@ export default {
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
-						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+						zip.file(this.innerFilelist[i].name, blob);
 					} catch (e) {
 						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
 							// should be handled before we get here
@@ -132,8 +132,8 @@ export default {
 				}
 			}
 			
-			directory = this.destinationDirectory + "/user-procedures";
-			//console.log(directory);
+			var subfolder = "user-procedures";
+			directory = this.destinationDirectory + "/" + subfolder;
 			await this.loadDirectory(directory);
 			
 			for (let i = 0; i < this.innerFilelist.length; i++) {
@@ -141,7 +141,7 @@ export default {
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
-						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+						zip.folder(subfolder).file(this.innerFilelist[i].name, blob);
 					} catch (e) {
 						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
 							// should be handled before we get here
@@ -153,8 +153,8 @@ export default {
 				}
 			}
 			
-			directory = this.destinationDirectory + "/procedures";
-			//console.log(directory);
+			subfolder = "procedures";
+			directory = this.destinationDirectory + "/" + subfolder;
 			await this.loadDirectory(directory);
 			
 			for (let i = 0; i < this.innerFilelist.length; i++) {
@@ -162,7 +162,7 @@ export default {
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
-						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+						zip.folder(subfolder).file(this.innerFilelist[i].name, blob);
 					} catch (e) {
 						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
 							// should be handled before we get here
@@ -174,8 +174,8 @@ export default {
 				}
 			}
 			
-			directory = this.destinationDirectory + "/macros/Preheat";
-			//console.log(directory);
+			subfolder = "macros/Preheat";
+			directory = this.destinationDirectory + "/" + subfolder;
 			await this.loadDirectory(directory);
 			
 			for (let i = 0; i < this.innerFilelist.length; i++) {
@@ -183,7 +183,7 @@ export default {
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
-						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+						zip.folder(subfolder).file(this.innerFilelist[i].name, blob);
 					} catch (e) {
 						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
 							// should be handled before we get here
@@ -195,8 +195,8 @@ export default {
 				}
 			}
 			
-			directory = this.destinationDirectory + "/macros/Maintenance";
-			//console.log(directory);
+			subfolder = "macros/Maintenance";
+			directory = this.destinationDirectory + "/" + subfolder;
 			await this.loadDirectory(directory);
 			
 			for (let i = 0; i < this.innerFilelist.length; i++) {
@@ -204,7 +204,7 @@ export default {
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
-						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+						zip.folder(subfolder).file(this.innerFilelist[i].name, blob);
 					} catch (e) {
 						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
 							// should be handled before we get here
@@ -216,8 +216,8 @@ export default {
 				}
 			}
 			
-			directory = this.destinationDirectory + "/macros/Maintenance/Other";
-			//console.log(directory);
+			subfolder = "macros/Maintenance/Other";
+			directory = this.destinationDirectory + "/" + subfolder;
 			await this.loadDirectory(directory);
 			
 			for (let i = 0; i < this.innerFilelist.length; i++) {
@@ -225,7 +225,7 @@ export default {
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
-						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+						zip.folder(subfolder).file(this.innerFilelist[i].name, blob);
 					} catch (e) {
 						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
 							// should be handled before we get here
@@ -237,8 +237,8 @@ export default {
 				}
 			}
 			
-			directory = this.destinationDirectory + "/macros/Filament";
-			//console.log(directory);
+			subfolder = "macros/Filament";
+			directory = this.destinationDirectory + "/" + subfolder;
 			await this.loadDirectory(directory);
 			
 			for (let i = 0; i < this.innerFilelist.length; i++) {
@@ -246,7 +246,7 @@ export default {
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
-						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+						zip.folder(subfolder).file(this.innerFilelist[i].name, blob);
 					} catch (e) {
 						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
 							// should be handled before we get here
@@ -258,8 +258,8 @@ export default {
 				}
 			}
 			
-			directory = this.destinationDirectory + "/machine-specific";
-			//console.log(directory);
+			subfolder = "machine-specific";
+			directory = this.destinationDirectory + "/" + subfolder;
 			await this.loadDirectory(directory);
 			
 			for (let i = 0; i < this.innerFilelist.length; i++) {
@@ -267,7 +267,7 @@ export default {
 				{
 					try {
 						const blob = await this.machineDownload({ filename: Path.combine(directory, this.innerFilelist[i].name), type: 'blob', num: i + 1, count: this.innerFilelist.length });
-						zip.folder(directory).file(this.innerFilelist[i].name, blob);
+						zip.folder(subfolder).file(this.innerFilelist[i].name, blob);
 					} catch (e) {
 						if (!(e instanceof DisconnectedError) && !(e instanceof OperationCancelledError)) {
 							// should be handled before we get here
