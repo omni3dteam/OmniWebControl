@@ -11,7 +11,7 @@
 			</template>
 		</v-card-text>
 		<v-card-text class="pt-0">
-			<a href="https://github.com/omni3dteam/OmniWebControl" target="_blank">Omni Web Control 2.1.3</a>
+			<a href="https://github.com/omni3dteam/OmniWebControl" target="_blank">Omni Web Control 2.2.0</a>
 		</v-card-text>
 
 		<v-card-text class="pt-0">
