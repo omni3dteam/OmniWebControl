@@ -2,7 +2,7 @@
 
 const boardDefinitions = {
     duetwifi: {
-        firmwareFileRegEx: /(Duet2CombinedFirmware|Omni3DRRFirmware)(.*)\.bin/i,
+        firmwareFileRegEx: /(Duet2CombinedFirmware|OmniRRFirmware)(.*)\.bin/i,
         firmwareFile: 'Duet2CombinedFirmware.bin',
         motorWarningCurrent: 2000,
         motorLimitCurrent: 2400,
@@ -21,7 +21,7 @@ const boardDefinitions = {
         hasMotorLoadDetection: true
     },
     duetethernet: {
-        firmwareFileRegEx: /(Duet2CombinedFirmware|Omni3DRRFirmware)(.*)\.bin/i,
+        firmwareFileRegEx: /(Duet2CombinedFirmware|OmniRRFirmware)(.*)\.bin/i,
         firmwareFile: 'Duet2CombinedFirmware.bin',
         motorWarningCurrent: 2000,
         motorLimitCurrent: 2400,
