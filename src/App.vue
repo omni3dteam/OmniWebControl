@@ -74,6 +74,7 @@ a:not(:hover) {
 			</v-list>
 			
 			<div class="pa-2 hidden-sm-and-up">
+				<led-btn block></led-btn>
 				<connect-btn v-if="isLocal" class="mb-3" block></connect-btn>
 				<emergency-btn block></emergency-btn>
 			</div>
@@ -94,6 +95,7 @@ a:not(:hover) {
 
 			<v-spacer></v-spacer>
 
+			<led-btn class=hidden-sm-and-down></led-btn>
 			<upload-btn target="start" class="hidden-sm-and-down"></upload-btn>
 			<emergency-btn class="hidden-xs-only"></emergency-btn>
 

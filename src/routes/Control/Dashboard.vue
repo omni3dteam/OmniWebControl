@@ -18,7 +18,7 @@
 						<speed-factor-panel></speed-factor-panel>
 					</v-flex>
 				</v-layout>
-	
+				
 			</v-layout>
 		</v-flex>
 

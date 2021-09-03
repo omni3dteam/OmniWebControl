@@ -36,6 +36,11 @@ export default {
 			caption: 'Bazuj {0}',
 			title: 'Bazuj oś {0} (G28 {0})'
 		},
+		leds: {
+			captionOff: 'Wyłącz LED',
+			captionOn: 'Włącz LED',
+			title: 'Zmień stan diod LED'
+		},
 		newDirectory: {
 			caption: 'Nowy folder'
 		},

@@ -82,6 +82,9 @@ export default function(connector) {
 					layer: null
 				}
 			},
+			leds: {
+				value: null
+			},
 			messageBox: {
 				mode: null,
 				title: null,

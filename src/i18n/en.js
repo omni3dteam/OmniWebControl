@@ -36,6 +36,11 @@ export default {
 			caption: 'Home {0}',
 			title: 'Home the {0} axis (G28 {0})'
 		},
+		leds: {
+			captionOff: 'Led Off',
+			captionOn: 'Led On',
+			title: 'Switch LED state'
+		},
 		newDirectory: {
 			caption: 'New Directory'
 		},

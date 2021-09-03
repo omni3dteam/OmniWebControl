@@ -278,6 +278,9 @@ export default class PollConnector extends BaseConnector {
 					state: response.data.temps.state[heater]
 				}))
 			},
+			leds: {
+				value: response.data.leds
+			},
 			move: {
 				axes: response.data.coords.machine.map((machinePosition, drive) => ({
 					homed: !!response.data.coords.axesHomed[drive],
