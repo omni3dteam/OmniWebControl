@@ -37,6 +37,11 @@ export default {
 			caption: 'Origine {0}',
 			title: 'Déplace l\'axe {0} à son origine (G28 {0})'
 		},
+		leds: {
+			captionOff: 'LED éteinte',
+			captionOn: 'LED sur',
+			title: 'Changer d\'état de las LED'
+		},
 		newDirectory: {
 			caption: 'Nouveau Dossier'
 		},

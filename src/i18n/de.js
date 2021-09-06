@@ -36,6 +36,11 @@ export default {
 			caption: 'Referenziere {0}',
 			title: 'Referenziere die {0}-Achse (G28 {0})'
 		},
+		leds: {
+			captionOff: 'LED aus',
+			captionOn: 'LED ein',
+			title: 'LED-Status wechseln'
+		},
 		newDirectory: {
 			caption: 'Neues Verzeichnis'
 		},
