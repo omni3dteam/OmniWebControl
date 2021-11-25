@@ -85,6 +85,9 @@ export default function(connector) {
 			leds: {
 				value: null
 			},
+			machineSN: {
+				value: null
+			},
 			messageBox: {
 				mode: null,
 				title: null,

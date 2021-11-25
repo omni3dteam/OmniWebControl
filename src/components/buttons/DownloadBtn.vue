@@ -21,12 +21,14 @@ import saveAs from 'file-saver'
 import { mapState, mapGetters, mapActions } from 'vuex'
 import { DisconnectedError, OperationCancelledError } from '../../utils/errors.js'
 import Path from '../../utils/path.js'
+import { timeToStr } from '../../utils/time.js'
 
 const notAllowedExtensions = ['.bin', '.json']
 
 export default {
 	computed: {
 		...mapState(['isLocal']),
+		...mapState('machine/model', ['machineSN']),
 		...mapGetters(['isConnected', 'uiFrozen']),
 		...mapGetters('machine/model', ['board']),
 		caption() {
@@ -286,7 +288,7 @@ export default {
 			const notification = this.$makeNotification('info', this.$t('notification.compress.title'), this.$t('notification.compress.message'));
 			try {
 				const zipBlob = await zip.generateAsync({ type: 'blob' });
-				saveAs(zipBlob, 'log.zip');
+				saveAs(zipBlob, 'log-'+this.machineSN.value+'-'+timeToStr(new Date()).replaceAll(":", "")+'.zip');
 			} catch (e) {
 				console.warn(e);
 				this.$makeNotification('error', this.$t('notification.compress.errorTitle'), e.message);
