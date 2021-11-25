@@ -288,7 +288,7 @@ export default {
 			const notification = this.$makeNotification('info', this.$t('notification.compress.title'), this.$t('notification.compress.message'));
 			try {
 				const zipBlob = await zip.generateAsync({ type: 'blob' });
-				saveAs(zipBlob, 'log-'+this.machineSN.value+'-'+timeToStr(new Date()).replaceAll(":", "")+'.zip');
+				saveAs(zipBlob, 'log-'+this.machineSN.value+'-'+timeToStr(new Date()).replace(/:/g, '')+'.zip');
 			} catch (e) {
 				console.warn(e);
 				this.$makeNotification('error', this.$t('notification.compress.errorTitle'), e.message);
