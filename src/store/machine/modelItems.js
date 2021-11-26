@@ -71,6 +71,7 @@ export class ExtraHeater {
 
 export class Extruder {
 	constructor(initData) { quickPatch(this, initData); }
+	drives = []
 	factor = 1.0
 	nonlinear = {
 		a: 0,

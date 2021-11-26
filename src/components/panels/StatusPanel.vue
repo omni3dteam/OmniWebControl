@@ -81,7 +81,7 @@ a:not(:hover) {
 											{{ $t('panel.status.extruderDrive', [index]) }}
 										</v-flex>
 										<v-flex tag="span">
-											{{ $display((move.drives[index + move.axes.length].position)/1000, 3, 'm') }}
+											{{ displayExtruderPosition(extruder) }}
 										</v-flex>
 									</v-layout>
 								</v-flex>
@@ -218,6 +218,10 @@ export default {
 		displayAxisPosition(axis, index) {
 			const position = this.displayToolPosition ? this.move.drives[index].position : axis.machinePosition;
 			return (axis.letter === 'Z') ? this.$displayZ(position, false) : this.$display(position, 1);
+		},
+		displayExtruderPosition(extruder) {
+			const position = (extruder.drives.length > 0) ? this.move.drives[extruder.drives[0]].position : NaN;
+			return this.$display((position)/1000, 3, 'm');
 		},
 		probeSpanClasses(probe, index) {
 			let result = [];
