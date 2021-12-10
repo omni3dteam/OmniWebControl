@@ -553,7 +553,9 @@ export default {
 			generatedBy: 'Wygenerowany przez:'
 		},
 		mesh: {
-			caption: 'Mesh przed wydrukiem'
+			caption: 'Mesh przed wydrukiem',
+			disable: 'Wyłącz',
+			enable: 'Włącz'
 		},
 		movement: {
 			caption: 'Kontrola położenia',

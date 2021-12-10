@@ -554,7 +554,9 @@ export default {
 			generatedBy: 'Erzeugt durch:'
 		},
 		mesh: {
-			caption: 'Mesh Bevor Drucken'
+			caption: 'Mesh Bevor Drucken',
+			disable: 'Deaktivieren',
+			enable: 'Aktivieren'
 		},
 		movement: {
 			caption: 'Maschinenbewegung',

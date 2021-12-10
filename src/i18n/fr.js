@@ -555,7 +555,9 @@ export default {
 			generatedBy: 'Généré par:'
 		},
 		mesh: {
-			caption: 'Mesh Avant Impression'
+			caption: 'Mesh Avant Impression',
+			disable: 'Désactiver',
+			enable: 'Activer'
 		},
 		movement: {
 			caption: 'Mouvement Machine',
