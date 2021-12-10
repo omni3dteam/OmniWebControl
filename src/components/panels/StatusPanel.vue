@@ -50,16 +50,18 @@ a:not(:hover) {
 
 						<v-flex>
 							<v-layout row wrap>
-								<v-flex v-for="(axis, index) in move.axes" :key="index" grow class="equal-width">
-									<v-layout column>
-										<v-flex v-if="axis.visible" tag="strong">
-											{{ axis.letter }}
-										</v-flex>
-										<v-flex v-if="axis.visible" tag="span">
-											{{ displayAxisPosition(axis, index) }}
-										</v-flex>
-									</v-layout>
-								</v-flex>
+								<template v-for="(axis, index) in move.axes">
+									<v-flex v-if="axis.visible" :key="index" grow class="equal-width">
+										<v-layout column v-if="axis.visible">
+											<v-flex v-if="axis.visible" tag="strong">
+												{{ axis.letter }}
+											</v-flex>
+											<v-flex v-if="axis.visible" tag="span">
+												{{ displayAxisPosition(axis, index) }}
+											</v-flex>
+										</v-layout>
+									</v-flex>
+								</template>
 							</v-layout>
 						</v-flex>
 					</v-layout>
