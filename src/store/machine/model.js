@@ -155,6 +155,9 @@ export default function(connector) {
 				password: null,
 				interfaces: []
 			},
+			printMesh: {
+				value: null
+			},
 			scanner: {
 				progress: null,
 				status: null

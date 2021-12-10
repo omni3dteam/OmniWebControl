@@ -9,6 +9,7 @@ import ExtrusionFactorsPanel from './ExtrusionFactorsPanel.vue'
 import FanPanel from './FanPanel.vue'
 import FansPanel from './FansPanel.vue'
 import HeightmapPanel from './HeightmapPanel.vue'
+import MeshPanel from './MeshPanel.vue'
 import MovementPanel from './MovementPanel.vue'
 import JobControlPanel from './JobControlPanel.vue'
 import JobDataPanel from './JobDataPanel.vue'
@@ -39,6 +40,7 @@ Vue.component('job-control-panel', JobControlPanel)
 Vue.component('job-data-panel', JobDataPanel)
 Vue.component('job-estimations-panel', JobEstimationsPanel)
 Vue.component('job-info-panel', JobInfoPanel)
+Vue.component('mesh-panel', MeshPanel)
 Vue.component('movement-panel', MovementPanel)
 Vue.component('settings-about-panel', SettingsAboutPanel)
 Vue.component('settings-apperance-panel', SettingsAppearancePanel)
@@ -66,6 +68,7 @@ export default {
 	JobDataPanel,
 	JobEstimationsPanel,
 	JobInfoPanel,
+	MeshPanel,
 	MovementPanel,
 	SettingsAboutPanel,
 	SettingsAppearancePanel,

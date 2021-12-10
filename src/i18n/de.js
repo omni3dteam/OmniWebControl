@@ -553,6 +553,9 @@ export default {
 			filament: 'Filamentverbrauch:',
 			generatedBy: 'Erzeugt durch:'
 		},
+		mesh: {
+			caption: 'Mesh Bevor Drucken'
+		},
 		movement: {
 			caption: 'Maschinenbewegung',
 			compensation: 'Kompensation & Kalibrierung',

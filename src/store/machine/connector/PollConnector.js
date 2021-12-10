@@ -300,6 +300,9 @@ export default class PollConnector extends BaseConnector {
 				})),
 				speedFactor: response.data.params.speedFactor / 100
 			},
+			printMesh: {
+				value: response.data.printMesh
+			},
 			scanner: (response.data.scanner) ? {
 				progress: response.data.scanner.progress,
 				status: response.data.scanner.status
