@@ -378,6 +378,10 @@ export default class PollConnector extends BaseConnector {
 				{
 					value: response.data.machineSN
 				},
+				machineType:
+				{
+					value: response.data.machineType
+				},
 				move: {
 					axes: response.data.axisNames.split('').map((axis, index) => ({
 						letter: axis,

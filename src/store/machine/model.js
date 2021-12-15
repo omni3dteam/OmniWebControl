@@ -88,6 +88,9 @@ export default function(connector) {
 			machineSN: {
 				value: null
 			},
+			machineType: {
+				value: null
+			},
 			messageBox: {
 				mode: null,
 				title: null,
