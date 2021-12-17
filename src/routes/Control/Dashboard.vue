@@ -73,7 +73,11 @@ export default {
 	computed: {
 		...mapState('machine/model', ['machineType', 'printMesh']),
 		isServo() {
-			return this.machineType.value != 0 && this.printMesh.value
+			if ((this.machineType.value != null && this.machineType.value != undefined) && (this.printMesh.value != null && this.printMesh.value != undefined))
+			{
+				return this.machineType.value != 0
+			}
+			return false
         }
 	}
 }
