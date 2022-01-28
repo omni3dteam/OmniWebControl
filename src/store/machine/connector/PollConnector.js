@@ -255,8 +255,8 @@ export default class PollConnector extends BaseConnector {
 			heat: {
 				beds: [
 					response.data.temps.bed ? {
-						active: [response.data.temps.bed.active],
-						standby: (response.data.temps.bed.standby === undefined) ? [] : [response.data.temps.bed.standby]
+						active: response.data.temps.bed.active,
+						standby: (response.data.temps.bed.standby === undefined) ? [] : response.data.temps.bed.standby
 					} : null
 				],
 				chambers: [
@@ -355,8 +355,8 @@ export default class PollConnector extends BaseConnector {
 				heat: {
 					// FIXME-FW: 'heater' should not be part of the standard status response
 					beds: [
-						response.data.temps.bed ? {
-							heaters: [response.data.temps.bed.heater]
+						response.data.temps.bed.heater ? {
+							heaters: response.data.temps.bed.heater
 						} : null
 					],
 					chambers: [
