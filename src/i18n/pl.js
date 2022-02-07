@@ -337,7 +337,6 @@ export default {
 			type: 'Type',
 			message: 'Event',
 			noEvents: 'No Events',
-			copy: 'Kopiuj',
 			clear: 'Wyczyść',
 			downloadText: 'Pobierz jako tekst',
 			downloadCSV: 'Pobierz jako CSV'
