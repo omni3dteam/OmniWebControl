@@ -495,6 +495,13 @@ export default {
 			fan: 'Wentylator {0}',
 			noFans: 'Brak wentylatorów'
 		},
+		filamentSensors:
+		{
+			caption: 'Czujniki filamentu',
+			disable: 'Wyłącz',
+			enable: 'Włącz',
+			name: 'Czujnik {0}:'
+		},
 		heightmap: {
 			scale: 'Scale:',
 			orMore: 'or more',

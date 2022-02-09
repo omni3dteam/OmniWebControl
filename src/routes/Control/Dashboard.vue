@@ -47,6 +47,12 @@
 					</v-layout>
 
 				</template>
+
+				<v-layout v-if="isSensorsState" row wrap>
+					<v-flex d-flex xs12 sm12 md6 lg6>
+						<filament-sensors-panel></filament-sensors-panel>
+					</v-flex>
+				</v-layout>
 			</v-layout>
 		</v-flex>
 
@@ -71,14 +77,17 @@ import { mapState } from 'vuex'
 
 export default {
 	computed: {
-		...mapState('machine/model', ['machineType', 'printMesh']),
+		...mapState('machine/model', ['machineType', 'printMesh', 'filSensors']),
 		isServo() {
 			if ((this.machineType.value != null && this.machineType.value != undefined) && (this.printMesh.value != null && this.printMesh.value != undefined))
 			{
 				return this.machineType.value != 0
 			}
 			return false
-        }
+        },
+		isSensorsState() {
+			return this.filSensors.length > 0
+		}
 	}
 }
 </script>

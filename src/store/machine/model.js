@@ -40,6 +40,7 @@ export default function(connector) {
 				expansionBoards: []
 			},
 			fans: [],
+			filSensors: [],
 			heat: {
 				beds: [									// may contain null items
 					new BedOrChamber({

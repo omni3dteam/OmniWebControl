@@ -496,6 +496,13 @@ export default {
 			fan: 'Fan {0}',
 			noFans: 'No Fans'
 		},
+		filamentSensors:
+		{
+			caption: 'Filament Sensors',
+			disable: 'Disable',
+			enable: 'Enable',
+			name: 'Sensor {0}:'
+		},
 		heightmap: {
 			scale: 'Scale:',
 			orMore: 'or more',

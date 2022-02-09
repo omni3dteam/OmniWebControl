@@ -252,6 +252,7 @@ export default class PollConnector extends BaseConnector {
 				rpm: (index < fanRPMs.length) ? fanRPMs[index] : null,
 				value: fanPercent / 100
 			})),
+			filSensors: response.data.filSensors,
 			heat: {
 				beds: [
 					response.data.temps.bed ? {

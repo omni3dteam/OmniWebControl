@@ -497,6 +497,13 @@ export default {
 			fan: 'Ventilateur {0}',
 			noFans: 'Aucun Ventilateur'
 		},
+		filamentSensors:
+		{
+			caption: 'Capteurs à filament',
+			disable: 'Désactiver',
+			enable: 'Activer',
+			name: 'Capteur {0}:'
+		},
 		heightmap: {
 			scale: 'Échelle:',
 			orMore: 'ou plus',
