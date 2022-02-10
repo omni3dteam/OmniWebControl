@@ -36,11 +36,6 @@ export default {
 			caption: 'Home {0}',
 			title: 'Home the {0} axis (G28 {0})'
 		},
-		leds: {
-			captionOff: 'Led Off',
-			captionOn: 'Led On',
-			title: 'Switch LED state'
-		},
 		newDirectory: {
 			caption: 'New Directory'
 		},
@@ -499,9 +494,8 @@ export default {
 		filamentSensors:
 		{
 			caption: 'Filament Sensors',
-			disable: 'Disable',
-			enable: 'Enable',
-			name: 'Sensor {0}:'
+			nameLeft: 'Left Extruder Sensor',
+			nameRight: 'Right Extruder Sensor'
 		},
 		heightmap: {
 			scale: 'Scale:',
@@ -562,8 +556,7 @@ export default {
 		},
 		mesh: {
 			caption: 'Mesh Before Printing',
-			disable: 'Disable',
-			enable: 'Enable'
+			label: 'Run mesh compensation before printing'
 		},
 		movement: {
 			caption: 'Machine Movement',

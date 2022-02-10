@@ -37,11 +37,6 @@ export default {
 			caption: 'Origine {0}',
 			title: 'Déplace l\'axe {0} à son origine (G28 {0})'
 		},
-		leds: {
-			captionOff: 'LED éteinte',
-			captionOn: 'LED sur',
-			title: 'Changer d\'état de las LED'
-		},
 		newDirectory: {
 			caption: 'Nouveau Dossier'
 		},
@@ -500,9 +495,8 @@ export default {
 		filamentSensors:
 		{
 			caption: 'Capteurs à filament',
-			disable: 'Désactiver',
-			enable: 'Activer',
-			name: 'Capteur {0}:'
+			nameLeft: 'Capteur d\'extrudeuse gauche',
+			nameRight: 'Capteur d\'extrudeuse droite'
 		},
 		heightmap: {
 			scale: 'Échelle:',
@@ -563,8 +557,7 @@ export default {
 		},
 		mesh: {
 			caption: 'Mesh Avant Impression',
-			disable: 'Désactiver',
-			enable: 'Activer'
+			label: 'Lancer Mesh Compensation avant l\'impression'
 		},
 		movement: {
 			caption: 'Mouvement Machine',

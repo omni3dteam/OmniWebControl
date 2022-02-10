@@ -36,11 +36,6 @@ export default {
 			caption: 'Bazuj {0}',
 			title: 'Bazuj oś {0} (G28 {0})'
 		},
-		leds: {
-			captionOff: 'Wyłącz LED',
-			captionOn: 'Włącz LED',
-			title: 'Zmień stan diod LED'
-		},
 		newDirectory: {
 			caption: 'Nowy folder'
 		},
@@ -498,9 +493,8 @@ export default {
 		filamentSensors:
 		{
 			caption: 'Czujniki filamentu',
-			disable: 'Wyłącz',
-			enable: 'Włącz',
-			name: 'Czujnik {0}:'
+			nameLeft: 'Czujnik lewego ekstrudera',
+			nameRight: 'Czujnik prawego ekstrudera'
 		},
 		heightmap: {
 			scale: 'Scale:',
@@ -560,8 +554,7 @@ export default {
 		},
 		mesh: {
 			caption: 'Mesh przed wydrukiem',
-			disable: 'Wyłącz',
-			enable: 'Włącz'
+			label: 'Pomiary siatki Mesh przed wydrukiem'
 		},
 		movement: {
 			caption: 'Kontrola położenia',

@@ -36,11 +36,6 @@ export default {
 			caption: 'Referenziere {0}',
 			title: 'Referenziere die {0}-Achse (G28 {0})'
 		},
-		leds: {
-			captionOff: 'LED aus',
-			captionOn: 'LED ein',
-			title: 'LED-Status wechseln'
-		},
 		newDirectory: {
 			caption: 'Neues Verzeichnis'
 		},
@@ -499,9 +494,8 @@ export default {
 		filamentSensors:
 		{
 			caption: 'Filamentsensoren',
-			disable: 'Deaktivieren',
-			enable: 'Aktivieren',
-			name: 'Sensor {0}:'
+			nameLeft: 'Linker filamentsensoren',
+			nameRight: 'Rechter filamentsensoren'
 		},
 		heightmap: {
 			scale: 'Skala:',
@@ -562,8 +556,7 @@ export default {
 		},
 		mesh: {
 			caption: 'Mesh Bevor Drucken',
-			disable: 'Deaktivieren',
-			enable: 'Aktivieren'
+			label: 'Gitterkompensation durchführen bevor drucken'
 		},
 		movement: {
 			caption: 'Maschinenbewegung',
