@@ -42,6 +42,10 @@ export default {
 			state.lastHostname = hostname;
 			setLocalSetting('lastHostname', hostname);
 		},
+		setLastHostnamePass(state, hostname) {
+			state.lastHostnamePass = hostname;
+			setLocalSetting('lastHostnamePass', hostname);
+		},
 
 		update(state, payload) {
 			if (payload.language) {

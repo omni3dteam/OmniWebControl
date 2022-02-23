@@ -155,7 +155,7 @@ export default function(connector) {
 				speedFactor: 1.0
 			},
 			network: {
-				name: connector ? `(${connector.hostname})` : 'Duet Web Control 2',
+				name: connector ? `(${connector.hostname})` : 'Omni Web Control',
 				password: null,
 				interfaces: []
 			},

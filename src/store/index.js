@@ -63,8 +63,14 @@ const store = new Vuex.Store({
 				if (state.isLocal) {
 					commit('settings/setLastHostname', hostname);
 				}
+
 				await dispatch('machine/settings/load');
 				await dispatch('machine/cache/load');
+
+				if (state.settings.lastHostnamePass != hostname)
+				{
+					commit('settings/setLastHostnamePass', hostname);
+				}
 			} catch (e) {
 				if (!(e instanceof InvalidPasswordError) || password !== defaultPassword)  {
 					logGlobal('error', i18n.t('error.connect', [hostname]), e.message);
