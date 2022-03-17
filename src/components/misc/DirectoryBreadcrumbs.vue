@@ -60,7 +60,7 @@ export default {
 				path = (path === '') ? item : path + '/' + item;
 				if (index === 0) {
 					items.push({
-						text: item.startsWith('0:') ? rootCaption : that.$t('generic.sdCard', [/^(\d+)/.exec(item)[1]]),
+						text: item.startsWith('0:') ? rootCaption : item.startsWith('2:') ? "USB" : that.$t('generic.sdCard', [/^(\d+)/.exec(item)[1]]),
 						disabled: index === pathItems.length - 1,
 						href: path
 					});

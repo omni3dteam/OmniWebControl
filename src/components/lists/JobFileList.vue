@@ -28,9 +28,11 @@
 				<v-list-tile v-show="isFile && !state.isPrinting" @click="start">
 					<v-icon class="mr-1">play_arrow</v-icon> {{ $t('list.jobs.start') }}
 				</v-list-tile>
-				<v-list-tile v-show="isFile && !state.isPrinting" @click="simulate">
-					<v-icon class="mr-1">fast_forward</v-icon> {{ $t('list.jobs.simulate') }}
-				</v-list-tile>
+				<template v-if="!isUsb">
+					<v-list-tile v-show="isFile && !state.isPrinting" @click="simulate">
+						<v-icon class="mr-1">fast_forward</v-icon> {{ $t('list.jobs.simulate') }}
+					</v-list-tile>
+				</template>
 			</template>
 		</base-file-list>
 
@@ -131,13 +133,15 @@ export default {
 				item: undefined,
 				shown: false
 			},
-			showNewDirectory: false
+			showNewDirectory: false,
+			isUsb: false
 		}
 	},
 	methods: {
 		...mapActions('machine', ['sendCode', 'getFileInfo']),
 		...mapMutations('machine/cache', ['clearFileInfo']),
 		async selectStorage(index) {
+			this.isUsb = (index === 2)
 			const storage = this.storages[index];
 			let mountSuccess = true, mountResponse;
 			if (storage.mounted) {

@@ -88,21 +88,23 @@ th.checkbox {
 			<v-list>
 				<slot name="context-menu"></slot>
 
-				<v-list-tile v-show="!noDownload && innerValue.length === 1 && filesSelected" @click="download">
-					<v-icon class="mr-1">cloud_download</v-icon> {{ $tc('list.baseFileList.download', innerValue.length) }}
-				</v-list-tile>
-				<v-list-tile v-show="!noEdit && innerValue.length === 1 && filesSelected" :disabled="!canEditFile" @click="edit(innerValue[0])">
-					<v-icon class="mr-1">edit</v-icon> {{ $t('list.baseFileList.edit') }}
-				</v-list-tile>
-				<v-list-tile v-show="!noRename && innerValue.length === 1" @click="rename">
-					<v-icon class="mr-1">short_text</v-icon> {{ $t('list.baseFileList.rename') }}
-				</v-list-tile>
-				<v-list-tile v-show="!noDelete" @click="remove">
-					<v-icon class="mr-1">delete</v-icon> {{ $t('list.baseFileList.delete') }}
-				</v-list-tile>
-				<v-list-tile v-show="!foldersSelected && innerValue.length > 1" @click="downloadZIP">
-					<v-icon class="mr-1">archive</v-icon> {{ $t('list.baseFileList.downloadZIP') }}
-				</v-list-tile>
+				<template v-if="storageIndex !== 2">
+					<v-list-tile v-show="!noDownload && innerValue.length === 1 && filesSelected" @click="download">
+						<v-icon class="mr-1">cloud_download</v-icon> {{ $tc('list.baseFileList.download', innerValue.length) }}
+					</v-list-tile>
+					<v-list-tile v-show="!noEdit && innerValue.length === 1 && filesSelected" :disabled="!canEditFile" @click="edit(innerValue[0])">
+						<v-icon class="mr-1">edit</v-icon> {{ $t('list.baseFileList.edit') }}
+					</v-list-tile>
+					<v-list-tile v-show="!noRename && innerValue.length === 1" @click="rename">
+						<v-icon class="mr-1">short_text</v-icon> {{ $t('list.baseFileList.rename') }}
+					</v-list-tile>
+					<v-list-tile v-show="!noDelete" @click="remove">
+						<v-icon class="mr-1">delete</v-icon> {{ $t('list.baseFileList.delete') }}
+					</v-list-tile>
+					<v-list-tile v-show="!foldersSelected && innerValue.length > 1" @click="downloadZIP">
+						<v-icon class="mr-1">archive</v-icon> {{ $t('list.baseFileList.downloadZIP') }}
+					</v-list-tile>
+				</template>
 			</v-list>
 		</v-menu>
 
