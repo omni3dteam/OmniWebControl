@@ -88,7 +88,11 @@ export default {
 				caption: 'Télécharger Les Fichiers Journaux',
 				title: 'Téléchargez le fichier zip compressé avec les journaux et les paramètres de configuration'
 			}
-		}		
+		},
+		stats: {
+			caption: 'Télécharger Le Fichier de Statistiques',
+			title: 'Télécharger le fichier CSV avec les statistiques d\'impression'
+		}
 	},
 	chart: {
 		layer: {

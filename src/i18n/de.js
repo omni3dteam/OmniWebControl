@@ -87,7 +87,11 @@ export default {
 				caption: 'Log Herunterladen',
 				title: 'Laden Sie die komprimierte Zip-Datei mit Protokollen und Konfigurationseinstellungen herunter'
 			}
-		}		
+		},
+		stats: {
+			caption: 'Statistiken herunterladen',
+			title: 'Laden Sie eine CSV-Datei mit Druckstatistiken herunter'
+		}
 	},
 	chart: {
 		layer: {

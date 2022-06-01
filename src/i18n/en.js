@@ -87,6 +87,10 @@ export default {
 				caption: 'Download Log Files',
 				title: 'Download compressed zip file with logs and configuration settings'
 			}
+		},
+		stats: {
+			caption: 'Download Statistics File',
+			title: 'Download CSV file with print statistics'
 		}
 	},
 	chart: {

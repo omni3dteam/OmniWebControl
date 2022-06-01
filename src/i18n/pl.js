@@ -87,6 +87,10 @@ export default {
 				caption: 'Pobierz Pliki Logów',
 				title: 'Pobierz spakowany plik zip z logami i ustawieniami konfiguracyjnymi'
 			}
+		},
+		stats: {
+			caption: 'Pobierz Plik Statystyk',
+			title: 'Pobierz plik CSV ze statystykami dotyczącymi wydruków'
 		}
 	},
 	chart: {
