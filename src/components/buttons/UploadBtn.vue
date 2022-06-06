@@ -27,6 +27,7 @@ const webExtensions = ['.htm', '.html', '.ico', '.xml', '.css', '.map', '.js', '
 export default {
 	computed: {
 		...mapState(['isLocal']),
+		...mapState('machine/model', ['machineType']),
 		...mapGetters(['isConnected', 'uiFrozen']),
 		...mapGetters('machine/model', ['board']),
 		caption() {
@@ -163,6 +164,30 @@ export default {
 							zipFiles[i] = await zip.file(name).async('blob');
 							zipFiles[i].name = name;
 						}
+
+
+						//TODO: look for a file that contains target machine type
+						// OR open config file and look for M550 T parameter
+						for (let i = 0; i < zipFiles.length; i++) {
+							if (zipFiles[i].name == "sys/config.g") {
+								const fileContent = await zipFiles[i].text()
+								//look for M550 command
+								const startLine = fileContent.search("M550")
+								const endLine = startLine + fileContent.substring(startLine).search("\n")
+
+								const typePos = fileContent.substring(startLine, endLine).search("\" T") + startLine + 3
+								const type = fileContent[typePos]
+								console.log(type)
+
+								if (type != this.machineType.value) {
+									this.extracting = false;
+									this.$makeNotification('error', 'Wrong package machine type!', 'Package created for other type of machine!');
+									return;
+								}
+							}
+						}
+
+
 						this.doUpload(zipFiles, files[0].name, new Date());
 					} catch (e) {
 						console.warn(e);
