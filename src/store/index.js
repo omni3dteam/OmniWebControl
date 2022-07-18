@@ -62,6 +62,7 @@ const store = new Vuex.Store({
 
 				if (state.isLocal) {
 					commit('settings/setLastHostname', hostname);
+					commit('settings/setLastHostnamePass', hostname);
 				}
 
 				await dispatch('machine/settings/load');
