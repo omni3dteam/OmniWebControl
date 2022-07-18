@@ -5,6 +5,10 @@
 				<template v-if="electronics.firmware.name">
 					{{ $t('panel.settingsElectronics.firmware', [$display(electronics.firmware.version)]) }}
 				</template>
+				<template v-if="machineSN.value">
+					<br/>
+					{{ $t('panel.settingsElectronics.serialNumber', [$display(machineSN.value)]) }}
+				</template>
 			</template>
 			<template v-else>
 				(not connected)
@@ -30,7 +34,7 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
 	computed: {
 		...mapGetters(['isConnected']),
-		...mapState('machine/model', ['electronics', 'network'])
+		...mapState('machine/model', ['electronics', 'network', 'machineSN'])
 	},
 	methods: {
 		...mapActions('machine', ['sendCode']),

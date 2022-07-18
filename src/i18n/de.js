@@ -600,7 +600,8 @@ export default {
 			board: 'Board: {0}',
 			firmware: 'Firmware: {0} {1}',
 			dwsFirmware: 'Version von Duet WiFi Server: {0}',
-			updateNote: 'Hinweis: Sie können Aktualisierungen auf der System-Seite installieren.'
+			updateNote: 'Hinweis: Sie können Aktualisierungen auf der System-Seite installieren.',
+			serialNumber: 'Seriennummer: {0}'
 		},
 		settingsGeneral: {
 			caption: 'Allgemein',
