@@ -593,7 +593,8 @@ export default {
 			caption: 'Electronics',
 			diagnostics: 'Diagnostics',
 			firmware: 'Firmware: {0} {1}',
-			dwsFirmware: 'Duet WiFi Server Version: {0}'
+			dwsFirmware: 'Duet WiFi Server Version: {0}',
+			serialNumber: 'Serial number: {0}'
 		},
 		settingsGeneral: {
 			caption: 'General',
