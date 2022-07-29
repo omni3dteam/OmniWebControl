@@ -555,8 +555,9 @@ export default {
 			generatedBy: 'Erzeugt durch:'
 		},
 		mesh: {
-			caption: 'Mesh Bevor Drucken',
-			label: 'Gitterkompensation durchführen bevor drucken'
+			caption: 'Startprozeduren drucken',
+			labelMesh: 'Gitterkompensation durchführen',
+			labelHVC: 'Head Vertical Calibration'
 		},
 		movement: {
 			caption: 'Maschinenbewegung',

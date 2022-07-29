@@ -556,8 +556,9 @@ export default {
 			generatedBy: 'Généré par:'
 		},
 		mesh: {
-			caption: 'Mesh Avant Impression',
-			label: 'Lancer Mesh Compensation avant l\'impression'
+			caption: 'Procédures de démarrage d\'impression',
+			labelMesh: 'Collecte de données de maillage',
+			labelHVC: 'Head Vertical Calibration'
 		},
 		movement: {
 			caption: 'Mouvement Machine',

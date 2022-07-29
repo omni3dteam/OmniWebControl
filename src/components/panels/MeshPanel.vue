@@ -7,7 +7,10 @@
         <v-card-text>
             <v-layout row shrink>
                 <v-layout column align-center>
-                    <v-switch class="mt-0" hide-details v-model="meshSwitch" :disabled="isDisabled" :label="$t('panel.mesh.label')"></v-switch>
+                    <v-switch class="mt-0" hide-details v-model="meshSwitch" :disabled=isDisabled() :label="$t('panel.mesh.labelMesh')"></v-switch>
+                </v-layout>
+                <v-layout column align-center>
+                    <v-switch class="mt-0" hide-details v-model="hvcSwitch" :disabled=isDisabledHVC() :label="$t('panel.mesh.labelHVC')"></v-switch>
                 </v-layout>
             </v-layout>
         </v-card-text>
@@ -22,7 +25,7 @@ import { mapActions, mapState, mapGetters } from 'vuex'
 export default {
 	computed: {
 		...mapGetters(['uiFrozen']),
-		...mapState('machine/model', ['state', 'printMesh']),
+		...mapState('machine/model', ['state', 'printMesh', 'printHVC']),
         meshSwitch: {
             get() {
                 return this.printMesh.value
@@ -30,20 +33,45 @@ export default {
             set(value) {
                 if (value === true)
                 {
-                    this.sendCode('M782 S1')
+                    this.sendCode('M782 R1 S1')
                 }
                 else
                 {
-                    this.sendCode('M782 S0')
+                    this.sendCode('M782 R0 S1')
                 }
             }
         },
-        isDisabled() {
-            return this.uiFrozen || !((this.state.status === 'idle') || (this.state.status === 'paused'))
+        hvcSwitch: {
+            get() {
+                if (this.printMesh === 1)
+                {
+                    return true
+                }
+                else
+                {
+                    return this.printHVC.value
+                }
+            },
+            set(value) {
+                if (value === true)
+                {
+                    this.sendCode('M782 C1 S1')
+                }
+                else
+                {
+                    this.sendCode('M782 C0 S1')
+                }
+            }
         }
 	},
     methods: {
-        ...mapActions('machine', ['sendCode'])
+        ...mapActions('machine', ['sendCode']),
+        isDisabled() {
+            return this.uiFrozen || !((this.state.status === 'idle') || (this.state.status === 'paused'))
+        },
+        isDisabledHVC() {
+            return this.printMesh.value === 1 || this.isDisabled() === true
+        }
 	}
 }
 </script>

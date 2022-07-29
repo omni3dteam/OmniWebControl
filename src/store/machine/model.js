@@ -162,6 +162,9 @@ export default function(connector) {
 			printMesh: {
 				value: null
 			},
+			printHVC: {
+				value: null
+			},
 			scanner: {
 				progress: null,
 				status: null
