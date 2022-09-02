@@ -304,6 +304,9 @@ export default class PollConnector extends BaseConnector {
 			printMesh: {
 				value: response.data.printMesh
 			},
+			printHVC: {
+				value: response.data.printHVC
+			},
 			scanner: (response.data.scanner) ? {
 				progress: response.data.scanner.progress,
 				status: response.data.scanner.status

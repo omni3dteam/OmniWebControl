@@ -553,8 +553,9 @@ export default {
 			generatedBy: 'Wygenerowany przez:'
 		},
 		mesh: {
-			caption: 'Mesh przed wydrukiem',
-			label: 'Pomiary siatki Mesh przed wydrukiem'
+			caption: 'Procedury przed wydrukiem',
+			labelMesh: 'Pomiar Mesh',
+			labelHVC: 'Head Vertical Calibration'
 		},
 		movement: {
 			caption: 'Kontrola położenia',
