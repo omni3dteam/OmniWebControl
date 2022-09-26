@@ -260,6 +260,10 @@ export default class PollConnector extends BaseConnector {
 						standby: (response.data.temps.bed.standby === undefined) ? [] : [response.data.temps.bed.standby]
 					} : null
 				],
+				dryer: {
+					active: response.data.temps.dryer ? response.data.temps.dryer.active : null,
+					current: response.data.temps.dryer ? response.data.temps.dryer.current : null
+				},
 				chambers: [
 					response.data.temps.chamber ? {
 						active: [response.data.temps.chamber.active],
@@ -277,7 +281,7 @@ export default class PollConnector extends BaseConnector {
 				heaters: response.data.temps.current.map((current, heater) => ({
 					current,
 					state: response.data.temps.state[heater]
-				}))
+				})),
 			},
 			leds: {
 				value: response.data.leds

@@ -463,6 +463,10 @@ export default {
 			caption: 'Z-Babystepping',
 			current: 'Aktueller Versatz: {0}'
 		},
+		dryer: {
+			caption: 'Trockner-Panel',
+			label: 'Temperatur'
+		},
 		extrude: {
 			caption: 'Extrusionskontrolle',
 			mix: 'Mischen',

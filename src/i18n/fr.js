@@ -464,6 +464,10 @@ export default {
 			caption: 'Z Babystepping',
 			current: 'Décalage Actuel: {0}'
 		},
+		dryer: {
+			caption: 'Panneau de sécheuse',
+			label: 'Température'
+		},
 		extrude: {
 			caption: 'Contrôle de l\'Extrusion',
 			mix: 'Mix',

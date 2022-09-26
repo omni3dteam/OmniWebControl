@@ -52,6 +52,9 @@
 					<v-flex d-flex xs12 sm12 md6 lg6>
 						<filament-sensors-panel></filament-sensors-panel>
 					</v-flex>
+					<v-flex d-flex xs12 sm12 md6 lg6>
+						<dryer-panel></dryer-panel>
+					</v-flex>
 				</v-layout>
 			</v-layout>
 		</v-flex>

@@ -462,6 +462,10 @@ export default {
 			caption: 'Z Babystepping',
 			current: 'Current Offset: {0}'
 		},
+		dryer: {
+			caption: 'Panel Suszarki',
+			label: 'Temperatura'
+		},
 		extrude: {
 			caption: 'Ekstruzja',
 			mix: 'Mix',

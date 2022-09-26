@@ -463,6 +463,10 @@ export default {
 			caption: 'Z Babystepping',
 			current: 'Current Offset: {0}'
 		},
+		dryer: {
+			caption: 'Dryer Panel',
+			label: 'Temperature'
+		},
 		extrude: {
 			caption: 'Extrusion Control',
 			mix: 'Mix',

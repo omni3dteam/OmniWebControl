@@ -29,9 +29,11 @@ import SpeedFactorPanel from './SpeedFactorPanel.vue'
 import StatusPanel from './StatusPanel.vue'
 import ToolsPanel from './ToolsPanel.vue'
 import WebcamPanel from './WebcamPanel.vue'
+import DryerPanel from './DryerPanel.vue'
 
 Vue.component('atx-panel', ATXPanel)
 Vue.component('babystepping-panel', BabysteppingPanel)
+Vue.component('dryer-panel',DryerPanel)
 Vue.component('extrude-panel', ExtrudePanel)
 Vue.component('extrusion-factors-panel', ExtrusionFactorsPanel)
 Vue.component('fan-panel', FanPanel)
@@ -61,6 +63,7 @@ Vue.component('webcam-panel', WebcamPanel)
 export default {
 	ATXPanel,
 	BabysteppingPanel,
+	DryerPanel,
 	ExtrudePanel,
 	ExtrusionFactorsPanel,
 	FanPanel,

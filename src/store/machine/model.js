@@ -60,7 +60,11 @@ export default function(connector) {
 					new Heater(),
 					new Heater(),
 					new Heater()
-				]
+				],
+				dryer: {
+					current: null,
+					active: null
+				}
 			},
 			job: {
 				file: new FileInfo(),
