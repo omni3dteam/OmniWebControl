@@ -16,6 +16,9 @@
 					<upload-btn :directory="directory" target="sys" color="primary" block></upload-btn>
 				</v-flex>
 				<v-flex sm6 md12>
+					<stats-btn :directory="directory" target="stats" color="primary" block></stats-btn>
+				</v-flex>
+				<v-flex sm6 md12>
 					<download-btn :directory="directory" target="log" color="primary" block></download-btn>
 				</v-flex>
 				

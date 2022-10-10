@@ -8,6 +8,7 @@ import EmergencyBtn from './EmergencyBtn.vue'
 import SDCardBtn from './SDCardBtn.vue'
 import UploadBtn from './UploadBtn.vue'
 import DownloadBtn from './DownloadBtn.vue'
+import StatsBtn from './StatsBtn.vue'
 
 Vue.component('code-btn', CodeBtn)
 Vue.component('connect-btn', ConnectBtn)
@@ -15,6 +16,7 @@ Vue.component('emergency-btn', EmergencyBtn)
 Vue.component('sd-card-btn', SDCardBtn)
 Vue.component('upload-btn', UploadBtn)
 Vue.component('download-btn', DownloadBtn)
+Vue.component('stats-btn', StatsBtn)
 
 export default {
 	CodeBtn,
@@ -22,5 +24,6 @@ export default {
 	EmergencyBtn,
 	SDCardBtn,
 	UploadBtn,
-	DownloadBtn
+	DownloadBtn,
+	StatsBtn
 }
