@@ -87,6 +87,7 @@ export default {
 				wifiServer: false,
 				wifiServerSpiffs: false,
 				display: false,
+				usb: false,
 
 				codeSent: false
 			}
@@ -203,6 +204,7 @@ export default {
 			this.updates.wifiServer = false;
 			this.updates.wifiServerSpiffs = false;
 			this.updates.display = false;
+			this.updates.usb = false;
 
 			let success = true;
 			this.uploading = true;
@@ -221,6 +223,9 @@ export default {
 					} else if (/OmniDisplayFirmware(.*)\.bin/i.test(content.name)) {
 						filename = Path.combine(Path.sys, 'OmniDisplayFirmware.bin');
 						this.updates.display = true;
+					} else if (/RPiFirmware(.*)\.bin/i.test(content.name)) {
+						filename = Path.combine(Path.sys, "RPiFirmware.bin");
+						this.updates.usb = true;
 					} else if (this.board.hasWiFi) {
 						if ((/DuetWiFiSocketServer(.*)\.bin/i.test(content.name) || /DuetWiFiServer(.*)\.bin/i.test(content.name))) {
 							filename = Path.combine(Path.sys, 'DuetWiFiServer.bin');
@@ -260,7 +265,7 @@ export default {
 				}
 				this.$emit('uploadComplete', files);
 
-				if (this.updates.firmware || this.updates.wifiServer || this.updates.wifiServerSpiffs || this.updates.display) {
+				if (this.updates.firmware || this.updates.wifiServer || this.updates.wifiServerSpiffs || this.updates.display || this.updates.usb) {
 					// Ask user to perform an update
 					this.confirmUpdate = true;
 				} else if (!this.isLocal && this.updates.webInterface) {
@@ -283,6 +288,9 @@ export default {
 			}
 			if (this.updates.display) {
 				modules.push('4');
+			}
+			if (this.updates.usb) {
+				modules.push('5');
 			}
 
 			this.updates.codeSent = true;
