@@ -273,6 +273,10 @@ export default {
 			'tuning'
 		],
 		status: {
+			connecting: 'Connecting',
+			disconnecting: 'Disonnecting',
+			disconnected: 'Disonnected',
+			failed: 'Connection failed',
 			updating: 'Updating',
 			off: 'Off',
 			halted: 'Halted',

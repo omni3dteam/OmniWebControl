@@ -73,20 +73,20 @@ a:not(:hover) {
 				</v-list-group>
 			</v-list>
 			
-			<div class="pa-2 hidden-sm-and-up">
+			<!-- <div class="pa-2 hidden-sm-and-up">
 				<led-switch block></led-switch>
 				<connect-btn v-if="isLocal" class="mb-3" block></connect-btn>
 				<emergency-btn block></emergency-btn>
-			</div>
+			</div> -->
 		</v-navigation-drawer>
 
 		<v-toolbar ref="appToolbar" app clipped-left>
 			<v-toolbar-side-icon @click.stop="drawer = !drawer" v-tab-control></v-toolbar-side-icon>
 			<v-toolbar-title>
 				<!-- TODO: Optional OEM branding -->
-				<a id="title" v-tab-control>{{ name }}</a>
+				<a id="title" v-tab-control>Omni PrintQ Beta</a>
 			</v-toolbar-title>
-			<connect-btn v-if="isLocal" class="hidden-xs-only"></connect-btn>
+			<!-- <connect-btn v-if="isLocal" class="hidden-xs-only"></connect-btn> -->
 
 			<v-spacer></v-spacer>
 
@@ -95,9 +95,11 @@ a:not(:hover) {
 
 			<v-spacer></v-spacer>
 
+			
+<!-- 
 			<led-switch class=hidden-sm-and-down></led-switch>
 			<upload-btn target="start" class="hidden-sm-and-down"></upload-btn>
-			<emergency-btn class="hidden-xs-only"></emergency-btn>
+			<emergency-btn class="hidden-xs-only"></emergency-btn> -->
 
 			<!--<v-btn icon class="hidden-sm-and-down" @click="rightDrawer = !rightDrawer">
 				<v-icon>menu</v-icon>
@@ -105,7 +107,7 @@ a:not(:hover) {
 		</v-toolbar>
 
 		<v-content id="content">
-			<v-scroll-y-transition>
+			<!-- <v-scroll-y-transition>
 				<v-container fluid id="global-container" class="container" v-show="showGlobalStatus && (!hideGlobalContainer || $vuetify.breakpoint.mdAndUp)">
 					<v-layout row wrap>
 						<v-flex xs12 sm6 md4 lg4>
@@ -121,9 +123,9 @@ a:not(:hover) {
 						</v-flex>
 					</v-layout>
 				</v-container>
-			</v-scroll-y-transition>
+			</v-scroll-y-transition> -->
 
-			<v-divider v-show="!hideGlobalContainer || $vuetify.breakpoint.mdAndUp"></v-divider>
+			<!-- <v-divider v-show="!hideGlobalContainer || $vuetify.breakpoint.mdAndUp"></v-divider> -->
 
 			<v-container fluid id="page-container" class="container">
 				<keep-alive>
@@ -135,11 +137,10 @@ a:not(:hover) {
 		<!--<v-navigation-drawer temporary right v-model="rightDrawer" fixed app>
 			TODO Add quick access / component list here in design mode
 		</v-navigation-drawer>-->
-
 		<connect-dialog></connect-dialog>
-		<connection-dialog></connection-dialog>
-		<messagebox-dialog></messagebox-dialog>
-		<procedurebox-dialog></procedurebox-dialog>
+		<!-- <connection-dialog></connection-dialog> -->
+		<!-- <messagebox-dialog></messagebox-dialog>
+		<procedurebox-dialog></procedurebox-dialog> -->
 	</v-app>
 </template>
 
@@ -154,6 +155,7 @@ import { Routing } from './routes'
 export default {
 	computed: {
 		...mapState({
+			machines: state => state.machines,
 			isLocal: state => state.isLocal,
 			globalShowConnectDialog: state => state.showConnectDialog,
 
@@ -161,6 +163,7 @@ export default {
 			name: state => state.machine.model.network.name,
 
 			darkTheme: state => state.settings.darkTheme,
+			printers: state => state.settings.hosts,
 			webcam: state => state.settings.webcam
 		}),
 		...mapGetters('machine/model', ['board', 'jobProgress']),
@@ -184,6 +187,11 @@ export default {
 	methods: {
 		...mapActions(['connect', 'disconnectAll']),
 		...mapActions('settings', ['load']),
+		async connectAll() {
+			for (const p of this.printers) {
+				this.connect({ hostname: p.hostname})
+			}
+		},
 		checkMenuCondition(condition) {
 			if (condition === 'webcam') {
 				return (this.webcam.url !== '');
@@ -212,13 +220,16 @@ export default {
 		// Attempt to disconnect from every machine when the page is being unloaded
 		window.addEventListener('unload', this.disconnectAll);
 
-		// Connect if running on a board
-		if (!this.isLocal) {
-			this.connect();
-		}
+		// // Connect if running on a board
+		// if (!this.isLocal) {
+		// 	this.connect();
+		// }
+
+		this.connectAll();
+		
 
 		// Attempt to load the settings
-		this.load();
+		//this.load();
 
 		// Validate navigation
 		const that = this;

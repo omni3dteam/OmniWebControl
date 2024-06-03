@@ -1,6 +1,7 @@
 <template>
 	<v-layout column>
-		<v-flex>
+		<omni-printers-panel></omni-printers-panel>
+		<!-- <v-flex>
 			<job-progress></job-progress>
 		</v-flex>
 
@@ -38,6 +39,6 @@
 					</v-layout>
 				</v-flex>
 			</v-layout>
-		</v-flex>
+		</v-flex> -->
 	</v-layout>
 </template>

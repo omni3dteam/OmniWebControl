@@ -5,9 +5,9 @@ import VueRouter from 'vue-router'
 
 import Page404 from './Page404.vue'
 
-import Control from './Control'
+//import Control from './Control'
 import Job from './Job'
-import Files from './Files'
+//import Files from './Files'
 import Settings from './Settings'
 
 Vue.use(VueRouter)
@@ -58,43 +58,43 @@ export const Routing = [
 				component: Job.Status,
 				alias: '/Job/Status'
 			},
-			// Dashboard
-			{
-				icon: 'dashboard',
-				caption: 'menu.control.dashboard',
-				path: '/Dashboard',
-				component: Control.Dashboard
-			},
-			// Events
-			{
-				icon: 'code',
-				caption: 'menu.control.events',
-				path: '/Events',
-				component: Control.Events,
-			},
-			// Jobs
-			{
-				icon: 'play_arrow',
-				caption: 'menu.files.jobs',
-				path: '/Files/Jobs',
-				component: Files.Jobs
-			},
-			// Console
-			{
-				icon: 'code',
-				caption: 'menu.control.console',
-				path: '/Console',
-				component: Control.Console,
-				hidden: true
-			},
-			// Height Map
-			{
-				icon: 'grid_on',
-				caption: 'menu.control.heightmap',
-				path: '/Heightmap',
-				component: Control.Heightmap,
-				hidden: true
-			}
+	// 		// Dashboard
+	// 		{
+	// 			icon: 'dashboard',
+	// 			caption: 'menu.control.dashboard',
+	// 			path: '/Dashboard',
+	// 			component: Control.Dashboard
+	// 		},
+	// 		// Events
+	// 		{
+	// 			icon: 'code',
+	// 			caption: 'menu.control.events',
+	// 			path: '/Events',
+	// 			component: Control.Events,
+	// 		},
+	// 		// Jobs
+	// 		{
+	// 			icon: 'play_arrow',
+	// 			caption: 'menu.files.jobs',
+	// 			path: '/Files/Jobs',
+	// 			component: Files.Jobs
+	// 		},
+	// 		// Console
+	// 		{
+	// 			icon: 'code',
+	// 			caption: 'menu.control.console',
+	// 			path: '/Console',
+	// 			component: Control.Console,
+	// 			hidden: true
+	// 		},
+	// 		// Height Map
+	// 		{
+	// 			icon: 'grid_on',
+	// 			caption: 'menu.control.heightmap',
+	// 			path: '/Heightmap',
+	// 			component: Control.Heightmap,
+	// 			hidden: true
+	// 		}
 		]
 	},
 	// Settings
@@ -110,45 +110,45 @@ export const Routing = [
 				component: Settings.General
 			},
 			// Machine
-			{
-				icon: 'settings_applications',
-				caption: 'menu.settings.machine',
-				path: '/Settings/Machine',
-				component: Settings.Machine,
-				hidden: true
-			},
-			// Macros
-			{
-				icon: 'polymer',
-				caption: 'menu.files.macros',
-				path: '/Files/Procedures',
-				component: Files.Macros,
-				hidden: true
-			},
-			// Filaments
-			{
-				icon: 'radio_button_checked',
-				caption: 'menu.files.filaments',
-				path: '/Files/Filaments',
-				component: Files.Filaments,
-				hidden: true
-			},
-			// Display
-			{
-				icon: 'format_list_numbered',
-				caption: 'menu.files.display',
-				path: '/Files/Display',
-				component: Files.Display,
-				condition: 'display'
-			},
-			// System
-			{
-				icon: 'settings',
-				caption: 'menu.files.system',
-				path: '/Files/System',
-				component: Files.System,
-				hidden: true
-			}
+			// {
+			// 	icon: 'settings_applications',
+			// 	caption: 'menu.settings.machine',
+			// 	path: '/Settings/Machine',
+			// 	component: Settings.Machine,
+			// 	hidden: true
+			// },
+			// // Macros
+			// {
+			// 	icon: 'polymer',
+			// 	caption: 'menu.files.macros',
+			// 	path: '/Files/Procedures',
+			// 	component: Files.Macros,
+			// 	hidden: true
+			// },
+			// // Filaments
+			// {
+			// 	icon: 'radio_button_checked',
+			// 	caption: 'menu.files.filaments',
+			// 	path: '/Files/Filaments',
+			// 	component: Files.Filaments,
+			// 	hidden: true
+			// },
+			// // Display
+			// {
+			// 	icon: 'format_list_numbered',
+			// 	caption: 'menu.files.display',
+			// 	path: '/Files/Display',
+			// 	component: Files.Display,
+			// 	condition: 'display'
+			// },
+			// // System
+			// {
+			// 	icon: 'settings',
+			// 	caption: 'menu.files.system',
+			// 	path: '/Files/System',
+			// 	component: Files.System,
+			// 	hidden: true
+			// }
 		]
 	}
 ]

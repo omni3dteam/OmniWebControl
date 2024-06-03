@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 
 import machine, { defaultMachine } from './machine'
 import connector from './machine/connector'
-import observer from './observer.js'
+//import observer from './observer.js'
 import settings from './settings.js'
 
 import i18n from '../i18n'
@@ -27,8 +27,9 @@ const store = new Vuex.Store({
 	state: {
 		isConnecting: false,
 		isDisconnecting: false,
+		connectionStates: [],
 		isLocal: (location.hostname === 'localhost') || (location.hostname === '127.0.0.1') || (location.hostname === '[::1]'),
-		connectDialogShown: (location.hostname === 'localhost') || (location.hostname === '127.0.0.1') || (location.hostname === '[::1]'),
+		connectDialogShown: false,
 		passwordRequired: false,
 		selectedMachine: defaultMachine
 	},
@@ -39,7 +40,7 @@ const store = new Vuex.Store({
 	},
 	actions: {
 		// Connect to the given hostname using the specified credentials
-		async connect({ state, commit, dispatch }, { hostname = location.host, username = defaultUsername, password = defaultPassword } = {}) {
+		async connect({ state, commit}, { hostname = location.host, username = defaultUsername, password = defaultPassword } = {}) {
 			if (!hostname || hostname === defaultMachine) {
 				throw new Error('Invalid hostname');
 			}
@@ -47,44 +48,49 @@ const store = new Vuex.Store({
 				throw new Error(`Host ${hostname} is already connected!`);
 			}
 			if (state.isConnecting) {
+				//TODO is in state connecting
 				throw new Error('Already connecting');
 			}
 
-			commit('setConnecting', true);
+			//commit('setConnecting', true);
+			commit('setConnectionState',{host: hostname, state:'connecting'})
 			try {
 				const connectorInstance = await connector.connect(hostname, username, password);
 				const moduleInstance = machine(hostname, connectorInstance);
 				commit('addMachine', { hostname, moduleInstance });
 				connectorInstance.register(moduleInstance);
 
-				commit('setSelectedMachine', hostname);
-				logGlobal('success', i18n.t('events.connected', [hostname]));
+				//commit('setSelectedMachine', hostname);
+				//logGlobal('success', i18n.t('events.connected', [hostname]));
 
-				if (state.isLocal) {
-					commit('settings/setLastHostname', hostname);
-					commit('settings/setLastHostnamePass', hostname);
-				}
+				// if (state.isLocal) {
+				// 	commit('settings/setLastHostname', hostname);
+				// 	commit('settings/setLastHostnamePass', hostname);
+				// }
 
-				await dispatch('machine/settings/load');
-				await dispatch('machine/cache/load');
+				// await dispatch('machine/settings/load');
+				// await dispatch('machine/cache/load');
 
-				if (state.settings.lastHostnamePass != hostname)
-				{
-					commit('settings/setLastHostnamePass', hostname);
-				}
+				// if (state.settings.lastHostnamePass != hostname)
+				// {
+				// 	commit('settings/setLastHostnamePass', hostname);
+				// }
+				commit('setConnectionState',{host: hostname, state:'connected'})
 			} catch (e) {
 				if (!(e instanceof InvalidPasswordError) || password !== defaultPassword)  {
 					logGlobal('error', i18n.t('error.connect', [hostname]), e.message);
+					commit('setConnectionState',{host: hostname, state:'failed'})
 				}
 				if (e instanceof InvalidPasswordError) {
 					commit('askForPassword');
 				}
 			}
-			commit('setConnecting', false);
+			
 		},
 
 		// Disconnect from the given hostname
 		async disconnect({ state, commit, dispatch }, { hostname = state.selectedMachine, doDisconnect = true } = {}) {
+			console.log("disconnecting "+hostname)
 			if (!hostname || hostname === defaultMachine) {
 				throw new Error('Invalid hostname');
 			}
@@ -96,7 +102,8 @@ const store = new Vuex.Store({
 			}
 
 			if (doDisconnect) {
-				commit('setDisconnecting', true);
+				//commit('setDisconnecting', true);
+				commit('setConnectionState',{host: hostname, state:'disconnecting'})
 				try {
 					await dispatch(`machines/${hostname}/disconnect`);
 					logGlobal('success', i18n.t('events.disconnected', [hostname]));
@@ -105,7 +112,8 @@ const store = new Vuex.Store({
 					logGlobal('warning', i18n.t('error.disconnect', [hostname]), e.message);
 					console.warn(e);
 				}
-				commit('setDisconnecting', false);
+				//commit('setDisconnecting', false);
+				commit('setConnectionState',{host: hostname, state:'disconnected'})
 			}
 			commit(`machines/${hostname}/unregister`);
 
@@ -152,6 +160,11 @@ const store = new Vuex.Store({
 		},
 
 		setConnecting: (state, connecting) => state.isConnecting = connecting,
+		setConnectionState(state, data) {
+			const hostname = data.host
+			const newState = data.state
+			state.connectionStates[hostname] = newState
+		},
 		addMachine(state, { hostname, moduleInstance }) {
 			machines[hostname] = moduleInstance;
 			this.registerModule(['machines', hostname], moduleInstance);
@@ -182,7 +195,7 @@ const store = new Vuex.Store({
 	},
 	plugins: [
 		connector.installStore,
-		observer,
+		//observer,
 		Plugins.installStore
 	],
 	strict: process.env.NODE_ENV !== 'production'

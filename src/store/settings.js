@@ -12,7 +12,13 @@ export default {
 		language: 'en',
 		lastHostname: "<defaultip>",
 		lastHostnamePass: location.host,
-		darkTheme: false,
+		darkTheme: true,
+		hosts: [
+			{hostname:'192.168.1.110', name:'103ka'},
+			{hostname:'192.168.1.44'},
+			{hostname:'192.168.1.78'},
+			{hostname:'192.168.1.61'},
+		],
 		useBinaryPrefix: true,
 		settingsStorageLocal: false,
 		settingsSaveDelay: 2000,						// ms - how long to wait before settings updates are saved

@@ -30,6 +30,8 @@ import StatusPanel from './StatusPanel.vue'
 import ToolsPanel from './ToolsPanel.vue'
 import WebcamPanel from './WebcamPanel.vue'
 
+import OmniPrintersPanel from './OmniPrintersPanel.vue'
+
 Vue.component('atx-panel', ATXPanel)
 Vue.component('babystepping-panel', BabysteppingPanel)
 Vue.component('extrude-panel', ExtrudePanel)
@@ -58,6 +60,8 @@ Vue.component('speed-factor-panel', SpeedFactorPanel)
 Vue.component('tools-panel', ToolsPanel)
 Vue.component('webcam-panel', WebcamPanel)
 
+Vue.component('omni-printers-panel',OmniPrintersPanel)
+
 export default {
 	ATXPanel,
 	BabysteppingPanel,
@@ -85,5 +89,6 @@ export default {
 	SpeedFactorPanel,
 	StatusPanel,
 	ToolsPanel,
-	WebcamPanel
+	WebcamPanel,
+	OmniPrintersPanel
 }
