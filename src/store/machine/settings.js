@@ -79,7 +79,7 @@ export default function(hostname) {
 						try {
 							const settings = await dispatch(`machines/${hostname}/download`, { filename: Path.dwcFactoryDefaults, showProgress: false, showSuccess: false, showError: false }, { root: true });
 							commit('settings/load', settings.main, { root: true });
-							commit('load', settings.machine);
+							//commit('load', settings.machine);
 						} catch (ex) {
 							// use shipped values
 						}

@@ -185,7 +185,7 @@ export default {
 		}
 	},
 	methods: {
-		...mapActions(['connect', 'disconnectAll']),
+		...mapActions(['connect', 'disconnectAll','connectToBackend']),
 		...mapActions('settings', ['load']),
 		async connectAll() {
 			for (const p of this.printers) {
@@ -220,10 +220,8 @@ export default {
 		// Attempt to disconnect from every machine when the page is being unloaded
 		window.addEventListener('unload', this.disconnectAll);
 
-		// // Connect if running on a board
-		// if (!this.isLocal) {
-		// 	this.connect();
-		// }
+		// Connect to backend
+		this.connectToBackend({hostname:'192.168.1.76'});
 
 		this.connectAll();
 		

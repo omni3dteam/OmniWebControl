@@ -34,7 +34,8 @@ export default function(store) {
 				machineSettingsTimer[machine] = setTimeout(function() {
 					machineSettingsTimer[machine] = undefined;
 					if (store.state.machines[machine] !== undefined) {
-						store.dispatch(`machines/${machine}/settings/save`);
+						//this is dangerous
+						//store.dispatch(`machines/${machine}/settings/save`);
 					}
 				}, store.state.settings.settingsSaveDelay);
 			} else if (mutation.type.indexOf('/cache/') !== -1) {
@@ -46,7 +47,8 @@ export default function(store) {
 				machineCacheTimer[machine] = setTimeout(function() {
 					machineCacheTimer[machine] = undefined;
 					if (store.state.machines[machine] !== undefined) {
-						store.dispatch(`machines/${machine}/cache/save`);
+						//and this
+						//store.dispatch(`machines/${machine}/cache/save`);
 					}
 				}, store.state.settings.cacheSaveDelay);
 			}
