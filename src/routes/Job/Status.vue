@@ -1,6 +1,7 @@
 <template>
 	<v-layout column>
 		<omni-printers-panel></omni-printers-panel>
+		<omni-webcam-panel></omni-webcam-panel>
 		<!-- <v-flex>
 			<job-progress></job-progress>
 		</v-flex>

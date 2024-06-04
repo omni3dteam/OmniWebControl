@@ -31,6 +31,7 @@ import ToolsPanel from './ToolsPanel.vue'
 import WebcamPanel from './WebcamPanel.vue'
 
 import OmniPrintersPanel from './OmniPrintersPanel.vue'
+import OmniWebcamPanel from './OmniWebcamPanel.vue'
 
 Vue.component('atx-panel', ATXPanel)
 Vue.component('babystepping-panel', BabysteppingPanel)
@@ -61,6 +62,8 @@ Vue.component('tools-panel', ToolsPanel)
 Vue.component('webcam-panel', WebcamPanel)
 
 Vue.component('omni-printers-panel',OmniPrintersPanel)
+Vue.component('omni-webcam-panel',OmniWebcamPanel)
+
 
 export default {
 	ATXPanel,
