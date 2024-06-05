@@ -40,7 +40,7 @@ const store = new Vuex.Store({
 	},
 	actions: {
 		// Connect to the given hostname using the specified credentials
-		async connectToBackend({ state, commit, dispatch}, { hostname = location.host, username = defaultUsername, password = defaultPassword } = {}) {
+		async connectToBackend({ state, commit, dispatch}, { hostname = location.hostname, username = defaultUsername, password = defaultPassword } = {}) {
 			if (!hostname || hostname === defaultMachine) {
 				throw new Error('Invalid hostname');
 			}
@@ -91,7 +91,7 @@ const store = new Vuex.Store({
 
 
 		// Connect to the given hostname using the specified credentials
-		async connect({ state, commit}, { hostname = location.host, username = defaultUsername, password = defaultPassword } = {}) {
+		async connect({ state, commit, dispatch }, { hostname = location.host, username = defaultUsername, password = defaultPassword } = {}) {
 			if (!hostname || hostname === defaultMachine) {
 				throw new Error('Invalid hostname');
 			}
@@ -129,11 +129,11 @@ const store = new Vuex.Store({
 				commit('setConnectionState',{host: hostname, state:'connected'})
 			} catch (e) {
 				if (!(e instanceof InvalidPasswordError) || password !== defaultPassword)  {
-					logGlobal('error', i18n.t('error.connect', [hostname]), e.message);
-					commit('setConnectionState',{host: hostname, state:'failed'})
+					//logGlobal('error', i18n.t('error.connect', [hostname]), e.message);
+					dispatch('connectionFailed',{ hostname })
 				}
 				if (e instanceof InvalidPasswordError) {
-					commit('setConnectionState','unauthorized')
+					commit('setConnectionState',{host: hostname, state:'unauthorized'})
 					//commit('askForPassword');
 				}
 			}
@@ -164,7 +164,6 @@ const store = new Vuex.Store({
 					console.warn(e);
 				}
 				//commit('setDisconnecting', false);
-				commit('setConnectionState',{host: hostname, state:'disconnected'})
 			}
 			commit(`machines/${hostname}/unregister`);
 
@@ -172,6 +171,7 @@ const store = new Vuex.Store({
 				commit('setSelectedMachine', defaultMachine);
 			}
 			commit('removeMachine', hostname);
+			commit('setConnectionState',{host: hostname, state:'disconnected'})
 		},
 
 		// Disconnect from every host
@@ -184,18 +184,30 @@ const store = new Vuex.Store({
 			}
 		},
 
+		async connectionFailed({ commit, dispatch }, {hostname}) {
+			//console.log('connectionFailed in '+hostname)
+			commit('setConnectionState',{host: hostname, state:'failed'})
+			setTimeout( () => {
+				//console.log('retrying '+hostname)
+				dispatch('connect', {hostname})
+			}, 30000 )
+		},
+
 		// Called when a machine cannot stay connected
-		async onConnectionError({ state, dispatch, commit }, { hostname, error }) {
-			if (error instanceof InvalidPasswordError) {
+		// async onConnectionError({ state, dispatch, commit }, { hostname, error }) {
+		async onConnectionError({ dispatch, commit }, { hostname, error }) {
+				if (error instanceof InvalidPasswordError) {
 				logGlobal('error', i18n.t('events.connectionLost', [hostname]), error.message);
 				await dispatch('disconnect', { hostname, doDisconnect: false });
 				commit('askForPassword');
-			} else if (state.isLocal) {
+//			} else if (state.isLocal) {
+			} else {
 				logGlobal('error', i18n.t('events.connectionLost', [hostname]), error.message);
 				await dispatch('disconnect', { hostname, doDisconnect: false });
-			} else {
-				logGlobal('warning', i18n.t('events.reconnecting', [hostname]), error.message);
-				dispatch(`machines/${hostname}/reconnect`);
+				dispatch('connectionFailed',{ hostname })
+			// } else {
+			// 	logGlobal('warning', i18n.t('events.reconnecting', [hostname]), error.message);
+			// 	dispatch(`machines/${hostname}/reconnect`);
 			}
 		}
 	},

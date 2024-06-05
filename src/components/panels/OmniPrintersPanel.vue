@@ -23,6 +23,8 @@ th {
     <v-card>
         <v-card-title>
             <v-icon class="mr-1">mdi-printer-3d-nozzle</v-icon> Printers
+            <v-spacer></v-spacer>
+            <v-btn color="success" @click="showNewPrinterDialog=true">Add new printer</v-btn>
         </v-card-title>
         <v-card-text>
             <table width="100%">
@@ -42,6 +44,9 @@ th {
                 <template v-for="(printer,key) in printers">
                     <tr :key="key">
                         <td>
+                            <v-btn fab style="width:30px; height: 30px" color="error" @click="rmPrinter(printer)">
+                                <v-icon small>delete</v-icon>
+                            </v-btn>
                             <a :href="`http://${printer.ip}`" class="printerLink" target="_blank">
                                 <strong>{{ printer.name }}</strong>
                             </a>
@@ -61,7 +66,7 @@ th {
                             <v-progress-linear v-model="printer.progress" height="25" color="success">
                                 <span class="d-flex justify-center align-center" style="font-weight: bold;">{{  $display(printer.progress, 1, '%') }}</span>
                             </v-progress-linear>
-                        <!-- </template> -->
+                            <!-- </template> -->
                         </td>
                         <td>
                             <template v-if="printer.isPrinting">
@@ -76,16 +81,42 @@ th {
                     </tr>
                 </template>
             </table> 
+
+
         </v-card-text>
+        <v-dialog v-model="showNewPrinterDialog" width="400px">
+            <v-card>
+                <v-card-title>
+                    New printer
+                    <v-spacer></v-spacer>
+                    <v-btn fab small @click="showNewPrinterDialog=false">
+                        <v-icon>cancel</v-icon>
+                    </v-btn>
+                </v-card-title>
+                <v-card-text>
+                    <v-text-field v-model="newHost" label="hostname or IP"></v-text-field>
+                    <v-text-field v-model="newName" label="name (optional)"></v-text-field>
+                    <v-btn @click="addPrinter" color="success">Add new</v-btn>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+        <confirm-dialog 
+            :shown.sync="showRmPrinterDialog" 
+            question="Remove printer"
+            :prompt="`Would you like to remove printer ${printerToRemove}`"
+            @confirmed="confirmRmPrinter"
+        />
     </v-card>
 </template>
 
 <script>
 'use strict'
 
-import { mapState } from 'vuex'
+import { mapMutations, mapActions, mapState } from 'vuex'
+import ConfirmDialog from '../dialogs/ConfirmDialog.vue'
 
 export default {
+  components: { ConfirmDialog },
     computed: {
         ...mapState({
             machines: state => state.machines,
@@ -132,9 +163,40 @@ export default {
     },
     data() {
         return {
+            showNewPrinterDialog: false,
+            newHost: "",
+            newName: "",
+            showRmPrinterDialog: false,
+            printerToRemove: undefined
+
         }
     },
     methods: {
+        ...mapMutations('settings',['removePrinter','addOrEditPrinter']),
+        ...mapActions(['connect']),
+        rmPrinter(printer) {
+            this.printerToRemove = printer.ip
+            this.showRmPrinterDialog = true
+            //this.removePrinter(printer.ip)
+        },
+        confirmRmPrinter() {
+            
+            if(this.printerToRemove) {
+                console.log(this.printerToRemove)
+                this.removePrinter(this.printerToRemove)
+                this.prinerToRemove = undefined
+            }   
+        },
+        cancelRmPrinter() {
+            this.prinerToRemove = undefined
+        },
+        addPrinter() {
+            this.showNewPrinterDialog = false
+            const hostname = this.newHost
+            const name = this.newName
+            this.addOrEditPrinter({hostname, name})
+            this.connect({ hostname })
+        },
         machineState(hostname) {
             if (Object.keys(this.connectionStates).includes(hostname)) {
                 return this.connectionStates[hostname]

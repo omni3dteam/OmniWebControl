@@ -13,12 +13,7 @@ export default {
 		lastHostname: "<defaultip>",
 		lastHostnamePass: location.host,
 		darkTheme: true,
-		hosts: [
-			{hostname:'192.168.1.110', name:'103ka'},
-			{hostname:'192.168.1.44'},
-			{hostname:'192.168.1.78'},
-			{hostname:'192.168.1.61'},
-		],
+		hosts: [],
 		useBinaryPrefix: true,
 		settingsStorageLocal: false,
 		settingsSaveDelay: 2000,						// ms - how long to wait before settings updates are saved
@@ -43,6 +38,27 @@ export default {
 				i18n.locale = payload.language;
 			}
 			patch(state, payload, true);
+		},
+		addOrEditPrinter(state, payload) {
+			const hostname = payload.hostname
+			const name = payload.name || undefined
+
+			//is ip in existing record
+			const index = state.hosts.findIndex(host => host.hostname === hostname)
+			if (index >= 0) {
+				//patch exisiting
+				if (name) state.hosts[index].name = name
+			} else {
+				//create new
+				state.hosts.push({
+					hostname: hostname,
+					name: name
+				})
+			}
+			
+		},
+		removePrinter(state, hostname) {
+			state.hosts = state.hosts.filter(host => host.hostname !== hostname)
 		},
 		setLastHostname(state, hostname) {
 			state.lastHostname = hostname;

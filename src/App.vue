@@ -221,10 +221,7 @@ export default {
 		window.addEventListener('unload', this.disconnectAll);
 
 		// Connect to backend
-		this.connectToBackend({hostname:'192.168.1.76'});
-
-		this.connectAll();
-		
+		this.connectToBackend().then(() => this.connectAll());
 
 		// Attempt to load the settings
 		//this.load();
