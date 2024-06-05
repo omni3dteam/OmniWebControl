@@ -276,7 +276,7 @@ export default {
 			connecting: 'Connecting',
 			disconnecting: 'Disonnecting',
 			disconnected: 'Disonnected',
-			failed: 'Connection failed',
+			failed: 'Offline',
 			updating: 'Updating',
 			off: 'Off',
 			halted: 'Halted',

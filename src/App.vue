@@ -95,7 +95,6 @@ a:not(:hover) {
 
 			<v-spacer></v-spacer>
 
-			
 <!-- 
 			<led-switch class=hidden-sm-and-down></led-switch>
 			<upload-btn target="start" class="hidden-sm-and-down"></upload-btn>
@@ -147,7 +146,7 @@ a:not(:hover) {
 <script>
 'use strict'
 
-import Piecon from 'piecon'
+//import Piecon from 'piecon'
 import { mapState, mapGetters, mapActions } from 'vuex'
 
 import { Routing } from './routes'
@@ -241,35 +240,6 @@ export default {
 			this.$router.push('/');
 		}
 
-		// Set up Piecon
-		Piecon.setOptions({
-			color: '#00f',			// Pie chart color
-			background: '#bbb',		// Empty pie chart color
-			shadow: '#fff',			// Outer ring color
-			fallback: false			// Toggles displaying percentage in the title bar (possible values - true, false, 'force')
-		});
-
-		this.showGlobalStatus = this.$route.path === '/Dashboard'
-	},
-	watch: {
-		isPrinting(to) {
-			if (to) {
-				// Go to Job Status when a print starts
-				//this.$router.push('/Job/Status');
-			}
-		},
-		name() { this.updateTitle(); },
-		jobProgress(to) {
-			if (to === undefined || to == 1) {
-				Piecon.reset();
-			} else {
-				Piecon.setProgress(to * 100);
-			}
-			this.updateTitle();
-		},
-		$route (to){
-			this.showGlobalStatus = to.path === '/Dashboard'
-		}
 	}
 }
 </script>
