@@ -9,8 +9,9 @@ export default function(store) {
 	// settings are saved automatically after a certain debounce delay
 	store.subscribe(function(mutation, state) {
 		if (!mutation.type.endsWith('/load') && !mutation.type.endsWith('/setLastHostname')) {
+			//console.log(mutation.type)
 			const machineMatches = /^machines\/(.+)\//.exec(mutation.type);
-			const machine = machineMatches ? machineMatches[1] : state.selectedMachine;
+			const machine = machineMatches ? machineMatches[1] : state.backendMachine;
 			if (machine === defaultMachine) {
 				return;
 			}

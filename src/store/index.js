@@ -31,11 +31,14 @@ const store = new Vuex.Store({
 		isLocal: (location.hostname === 'localhost') || (location.hostname === '127.0.0.1') || (location.hostname === '[::1]'),
 		connectDialogShown: false,
 		passwordRequired: false,
-		selectedMachine: defaultMachine
+		selectedMachine: defaultMachine,
+		backendMachine: defaultMachine,
+		
 	},
 	getters: {
 		connectedMachines: () => Object.keys(machines).filter(machine => machine !== defaultMachine),
 		isConnected: state => state.selectedMachine !== defaultMachine && !state.machine.isReconnecting,
+		isBackendConnected: state => state.backendMachine !== defaultMachine,
 		uiFrozen: (state, getters) => state.isConnecting || state.isDisconnecting || !getters.isConnected
 	},
 	actions: {
@@ -61,7 +64,7 @@ const store = new Vuex.Store({
 				connectorInstance.register(moduleInstance);
 
 
-				commit('setSelectedMachine', hostname);
+				commit('setBackendMachine', hostname);
 
 				// logGlobal('success', i18n.t('events.connected', [hostname]));
 
@@ -70,7 +73,7 @@ const store = new Vuex.Store({
 				// 	commit('settings/setLastHostnamePass', hostname);
 				// }
 
-				await dispatch('machine/settings/load');
+				await dispatch('backend/settings/load');
 				// await dispatch('machine/cache/load');
 
 				// if (state.settings.lastHostnamePass != hostname)
@@ -184,12 +187,16 @@ const store = new Vuex.Store({
 			}
 		},
 
-		async connectionFailed({ commit, dispatch }, {hostname}) {
+		async connectionFailed({ state, commit, dispatch }, {hostname}) {
 			//console.log('connectionFailed in '+hostname)
 			commit('setConnectionState',{host: hostname, state:'failed'})
 			setTimeout( () => {
-				//console.log('retrying '+hostname)
-				dispatch('connect', {hostname})
+				console.log('retrying '+hostname)
+				if (hostname == state.backendMachine) {
+					dispatch('connectToBackend',{hostname})
+				} else {
+					dispatch('connect', {hostname})
+				}
 			}, 30000 )
 		},
 
@@ -238,6 +245,11 @@ const store = new Vuex.Store({
 			delete machines[hostname];
 		},
 
+		setBackendMachine(state, selectedMachine) {
+			this.unregisterModule('backend');
+			this.registerModule('backend', machines[selectedMachine]);
+			state.backendMachine = selectedMachine
+		},
 		setSelectedMachine(state, selectedMachine) {
 			this.unregisterModule('machine');
 			this.registerModule('machine', machines[selectedMachine]);
@@ -266,5 +278,6 @@ const store = new Vuex.Store({
 
 // This has to be registered dynamically, else unregisterModule will not work cleanly
 store.registerModule('machine', machines[defaultMachine])
+store.registerModule('backend', machines[defaultMachine])
 
 export default store

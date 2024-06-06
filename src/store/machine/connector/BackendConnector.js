@@ -10,7 +10,6 @@ import {
 	NetworkError, DisconnectedError, TimeoutError, OperationCancelledError, OperationFailedError,
 	DirectoryNotFoundError, FileNotFoundError, DriveUnmountedError,
 	LoginError, InvalidPasswordError, NoFreeSessionError,
-	CodeResponseError, CodeBufferError
 } from '../../../utils/errors.js'
 import { strToTime, timeToStr } from '../../../utils/time.js'
 
@@ -162,7 +161,7 @@ export default class BackendConnector extends BaseConnector {
 		// this because ServiceWorkers require secured HTTP connections, which are no option
 		// for standard end-users. That is also the reason why they are disabled in the build
 		// script, which by default is used for improved caching
-		//this.scheduleUpdate();
+		this.scheduleUpdate();
 	}
 
 	async disconnect() {
@@ -182,21 +181,58 @@ export default class BackendConnector extends BaseConnector {
 		super.unregister();
 	}
 
+	async updateLoop() {
+	
+		const response = await this.axios.get(`status`);
+		//const newData = {};
+
+		this.store.commit(`backend/model/update`, {printq: response.data })
+
+		//this.lastStatusResponse = response.data;
+		this.justConnected = false;
+		//this.updateLoopCounter++;
+		this.scheduleUpdate();
+
+	}
+
+	scheduleUpdate() {
+		if (this.justConnected || this.updateLoopTimer) {
+			const that = this;
+			// Perform status update
+			this.updateLoopTimer = setTimeout(async function() {
+				try {
+					/* eslint-disable no-useless-call */
+					await that.updateLoop.call(that);
+				} catch (e) {
+					if (!(e instanceof DisconnectedError)) {
+						if (that.isReconnecting) {
+							that.updateLoopTimer = undefined;
+							that.reconnect();
+						} else {
+							console.warn(e);
+							that.dispatch('onConnectionError', e);
+						}
+					}
+				}
+			}, this.justConnected ? 1000 : 5000);
+		}
+	}
+
 	async sendCode(code) {
-		const response = await this.axios.get('rr_gcode', {
-			params: { gcode: code }
+		await this.axios.get('code', {
+			params: { code: code }
 		});
 
-		if (response.data.buff === undefined) {
-			console.warn(`Received bad response for rr_gcode: ${JSON.stringify(response.data)}`);
-			throw new CodeResponseError();
-		}
-		if (response.data.buff === 0) {
-			throw new CodeBufferError();
-		}
+		// if (response.data.buff === undefined) {
+		// 	console.warn(`Received bad response for rr_gcode: ${JSON.stringify(response.data)}`);
+		// 	throw new CodeResponseError();
+		// }
+		// if (response.data.buff === 0) {
+		// 	throw new CodeBufferError();
+		// }
 
-		const pendingCodes = this.pendingCodes, seq = this.lastStatusResponse.seq;
-		return new Promise((resolve, reject) => pendingCodes.push({ seq, resolve, reject }));
+		// const pendingCodes = this.pendingCodes, seq = this.lastStatusResponse.seq;
+		// return new Promise((resolve, reject) => pendingCodes.push({ seq, resolve, reject }));
 	}
 
 	upload({ filename, content, cancelSource = axios.cancelToken.source(), onProgress }) {

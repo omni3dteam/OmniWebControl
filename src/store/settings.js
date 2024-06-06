@@ -4,7 +4,7 @@ import i18n from '../i18n'
 
 import { localStorageSupported, getLocalSetting, setLocalSetting, removeLocalSetting } from '../utils/localStorage.js'
 import patch from '../utils/patch.js'
-import Path from '../utils/path.js'
+//import Path from '../utils/path.js'
 
 export default {
 	namespaced: true,
@@ -90,9 +90,9 @@ export default {
 			const settings = getLocalSetting('settings');
 			if (settings) {
 				commit('load', settings);
-			} else if (rootGetters.isConnected) {
+			} else if (rootGetters.isBackendConnected) {
 				// Otherwise try to load the settings from the selected board
-				dispatch('machine/settings/load', undefined, { root: true });
+				dispatch('backend/settings/load', undefined, { root: true });
 			}
 		},
 		async save({ state, rootGetters, dispatch }) {
@@ -104,39 +104,13 @@ export default {
 				removeLocalSetting('settings');
 
 				// And try to save everything on the selected board
-				if (rootGetters.isConnected) {
-					dispatch('machine/settings/save', undefined, { root: true });
+				if (rootGetters.isBackendConnected) {
+					dispatch('backend/settings/save', undefined, { root: true });
 				}
 			}
 		},
-		async reset({ rootState, dispatch }) {
-			// Delete settings
-			removeLocalSetting('settings');
-			removeLocalSetting(`machines/${rootState.selectedMachine}`);
-			try {
-				await dispatch('machine/delete', Path.dwcSettingsFile, { root: true });
-			} catch (e) {
-				console.warn(e);
-			}
-
-			// Delete cache
-			removeLocalSetting(`cache/${rootState.selectedMachine}`);
-			try {
-				await dispatch('machine/delete', Path.dwcCacheFile, { root: true });
-			} catch (e) {
-				console.warn(e);
-			}
-
-			// Check if there is a factory defaults file
-			try {
-				const defaults = await dispatch('machine/download', { filename: Path.dwcFactoryDefaults, showProgress: false, showSuccess: false, showError: false }, { root: true });
-				await dispatch('machine/upload', { filename: Path.dwcSettingsFile, content: new Blob([defaults]), showProgress: false, showSuccess: false }, { root: true });
-			} catch (e) {
-				// handled before we get here
-			}
-
-			// Reload the web interface to finish
-			location.reload();
+		async reset() {
+			// do nothing
 		}
 	}
 }

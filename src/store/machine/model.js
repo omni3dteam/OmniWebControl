@@ -21,6 +21,7 @@ export default function(connector) {
 	return {
 		namespaced: true,
 		state: {
+			printq: [],			//this is used only by PrintQ backend connector
 			electronics: {
 				type: defaultBoardName,
 				name: null,
