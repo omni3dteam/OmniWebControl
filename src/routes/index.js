@@ -5,9 +5,9 @@ import VueRouter from 'vue-router'
 
 import Page404 from './Page404.vue'
 
-//import Control from './Control'
+import Control from './Control'
 import Job from './Job'
-//import Files from './Files'
+import Files from './Files'
 import Settings from './Settings'
 
 Vue.use(VueRouter)
@@ -58,13 +58,13 @@ export const Routing = [
 				component: Job.Status,
 				alias: '/Job/Status'
 			},
-	// 		// Dashboard
-	// 		{
-	// 			icon: 'dashboard',
-	// 			caption: 'menu.control.dashboard',
-	// 			path: '/Dashboard',
-	// 			component: Control.Dashboard
-	// 		},
+			// Dashboard
+			{
+				icon: 'dashboard',
+				caption: 'menu.control.dashboard',
+				path: '/Dashboard',
+				component: Control.Dashboard
+			},
 	// 		// Events
 	// 		{
 	// 			icon: 'code',
@@ -72,13 +72,13 @@ export const Routing = [
 	// 			path: '/Events',
 	// 			component: Control.Events,
 	// 		},
-	// 		// Jobs
-	// 		{
-	// 			icon: 'play_arrow',
-	// 			caption: 'menu.files.jobs',
-	// 			path: '/Files/Jobs',
-	// 			component: Files.Jobs
-	// 		},
+			// Jobs
+			{
+				icon: 'play_arrow',
+				caption: 'menu.files.jobs',
+				path: '/Files/Jobs',
+				component: Files.Jobs
+			},
 	// 		// Console
 	// 		{
 	// 			icon: 'code',

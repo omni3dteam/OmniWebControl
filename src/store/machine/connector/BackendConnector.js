@@ -195,7 +195,7 @@ export default class BackendConnector extends BaseConnector {
 
 	}
 
-	scheduleUpdate() {
+	scheduleUpdate( now=false) {
 		if (this.justConnected || this.updateLoopTimer) {
 			const that = this;
 			// Perform status update
@@ -214,7 +214,7 @@ export default class BackendConnector extends BaseConnector {
 						}
 					}
 				}
-			}, this.justConnected ? 1000 : 5000);
+			}, this.justConnected || now ? 500 : 2000);
 		}
 	}
 
@@ -222,6 +222,11 @@ export default class BackendConnector extends BaseConnector {
 		await this.axios.get('code', {
 			params: { code: code }
 		});
+
+		clearTimeout(this.updateLoopTimer)
+		this.scheduleUpdate( true )
+
+		return ''
 
 		// if (response.data.buff === undefined) {
 		// 	console.warn(`Received bad response for rr_gcode: ${JSON.stringify(response.data)}`);
