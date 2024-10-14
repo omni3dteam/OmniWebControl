@@ -12,6 +12,27 @@ th {
 .progress {
     max-width: 300px !important;
 }
+
+.playlist {
+    width: 95%;
+    border-spacing: 0px !important;
+    background-color: #9FA8DA;
+    color: #000;
+}
+
+.playlist th {
+    padding: 4px !important;
+    background-color: #3F51B5;
+}
+
+.playlist tr:nth-child(even) {
+    background-color: #7986CB;
+}
+
+.playlist td {
+    padding: 4px !important;
+}
+
 </style>
 
 
@@ -28,7 +49,7 @@ th {
                         <v-flex xs12 sm6 md4 lg3 class="mt-2">
                             <strong>{{ printer.name }} ({{ printer.ip }})</strong>
                             <br>
-                            {{ statusText(printer.status)+(printer.isPrinting ? `: ${printerfile}` : "") }}
+                            <strong>{{ statusText(printer.status)}}</strong>{{(printer.isPrinting ? `: ${printer.file}` : "") }}
                         </v-flex>
                         <v-flex class="hidden-xs-only" >
                             <v-progress-linear v-if="printer.isPrinting" v-model="printer.progress" height="25" class="progress" color="success">
@@ -44,21 +65,33 @@ th {
                             <v-btn v-else @click="cmd(printer,'START')" color="success">
                                 <v-icon class="mr-1">play_arrow</v-icon>
                                 Start
-                            </v-btn>                            
+                            </v-btn>
+
+                            <v-btn @click="cmd(printer,'CLEAR')">
+                                <v-icon class="mr-2">delete</v-icon>Clear queue
+                            </v-btn>
+                            
                         </v-flex>
                     </v-layout>
                     <v-progress-linear v-if="printer.isPrinting" v-model="printer.progress" height="25" class="hidden-sm-and-up" color="success">
                         <span class="d-flex justify-center align-center" style="font-weight: bold;">{{  $display(printer.progress, 1, '%') }}</span>
                     </v-progress-linear>
 
-                    <table>
+                    <table class="playlist my-2">
+                        <tr v-if="printer.queue && printer.queue.length > 0">
+                            <th>File</th>
+                            <th>Notes</th>
+                        </tr>
                         <tr v-for="(job,key) in printer.queue" :key="key">
-                            <td>
+                            <td style="width:50%;">
                                 {{ job.file }}
+                            </td>
+                            <td style="width:50%;">
+                                {{ job.notes ? job.notes : "None" }}
                             </td>
                         </tr>
                         <tr v-if="!printer.queue || printer.queue.length == 0">
-                            <td>
+                            <td colspan="2">
                                 <i>No jobs scheduled</i>
                             </td>
                         </tr>

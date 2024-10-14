@@ -25,12 +25,12 @@
 			</template>
 
 			<template slot="context-menu">
-				<v-list-tile v-show="isFile && !state.isPrinting" @click="start">
+				<!-- <v-list-tile v-show="isFile && !state.isPrinting" @click="start">
 					<v-icon class="mr-1">play_arrow</v-icon> {{ $t('list.jobs.start') }}
 				</v-list-tile>
 				<v-list-tile v-show="isFile && !state.isPrinting" @click="simulate">
 					<v-icon class="mr-1">fast_forward</v-icon> {{ $t('list.jobs.simulate') }}
-				</v-list-tile>
+				</v-list-tile> -->
 			</template>
 		</base-file-list>
 
@@ -46,7 +46,29 @@
 		</v-layout>
 
 		<new-directory-dialog :shown.sync="showNewDirectory" :directory="directory"></new-directory-dialog>
-		<confirm-dialog :shown.sync="startJobDialog.shown" :question="startJobDialog.question" :prompt="startJobDialog.prompt" @confirmed="start(startJobDialog.item)"></confirm-dialog>
+		<!-- <confirm-dialog :shown.sync="startJobDialog.shown" :question="startJobDialog.question" :prompt="startJobDialog.prompt" @confirmed="push(startJobDialog.item)"></confirm-dialog> -->
+		<v-dialog v-model="startJobDialog.shown" persistent width="580">
+			<v-card>
+				<v-card-title>
+					<span class="headline">Add {{ startJobDialog.name}} to queue?</span>
+				</v-card-title>
+
+				<v-card-text>
+					<!-- {{ startJobDialog.prompt }} -->
+					Do you want to add {{ startJobDialog.name }} to the queue of printer "{{ machineName }}"`
+
+				</v-card-text>
+
+				<v-text-field v-model="startJobDialog.notes" label="Job informations (optional)" class="mx-4"></v-text-field>
+
+				<v-card-actions>
+					<v-spacer></v-spacer>
+					<v-btn color="blue darken-1" flat @click="startJobDialog.shown=false">Cancel</v-btn>
+					<v-btn color="blue darken-1" flat @click="dialogPushFirst" disabled>Push to queue (first)</v-btn>
+					<v-btn color="blue darken-1" flat @click="dialogPushLast">Push to queue (last)</v-btn>
+				</v-card-actions>
+			</v-card>
+		</v-dialog>
 	</div>
 </template>
 
@@ -62,7 +84,9 @@ import Path from '../../utils/path.js'
 export default {
 	computed: {
 		...mapGetters(['isConnected', 'uiFrozen']),
+		...mapState(['selectedMachine']),
 		...mapState('machine/model', ['state', 'storages']),
+		...mapState('machine/model', { machineName: state => state.network.name }),
 		...mapState('settings', ['language']),
 		isFile() {
 			return (this.selection.length === 1) && !this.selection[0].isDirectory;
@@ -126,8 +150,10 @@ export default {
 			fileinfoDirectory: undefined,
 			fileinfoProgress: -1,
 			startJobDialog: {
-				question: '',
-				prompt: '',
+				// question: '',
+				// prompt: '',
+				name: '',
+				notes: '',
 				item: undefined,
 				shown: false
 			},
@@ -136,6 +162,7 @@ export default {
 	},
 	methods: {
 		...mapActions('machine', ['sendCode', 'getFileInfo']),
+		...mapActions('backend', {sendBackendCode: 'sendCode' }),
 		...mapMutations('machine/cache', ['clearFileInfo']),
 		async selectStorage(index) {
 			const storage = this.storages[index];
@@ -240,16 +267,36 @@ export default {
 			}
 		},
 		fileClicked(item) {
-			this.startJobDialog.question = this.$t('dialog.startJob.title', [item.name]);
-			this.startJobDialog.prompt = this.$t('dialog.startJob.prompt', [item.name]);
+			// this.startJobDialog.question = this.$t('dialog.startJob.title', [item.name]);
+			// this.startJobDialog.prompt = this.$t('dialog.startJob.prompt', [item.name]);
+			this.startJobDialog.question = `Add ${item.name} to queue?`
+			this.startJobDialog.prompt = `Do you want to add ${item.name} at the end of the printer queue?`
+			this.startJobDialog.name = item.name
 			this.startJobDialog.item = item;
+			this.startJobDialog.notes = ""
 			this.startJobDialog.shown = true;
 		},
-		start(item) {
-			this.sendCode(`M32 "${Path.combine(this.directory, (item && item.name) ? item.name : this.selection[0].name)}"`);
+		// start(item) {
+		// 	this.sendCode(`M32 "${Path.combine(this.directory, (item && item.name) ? item.name : this.selection[0].name)}"`);
+		// },
+		// simulate(item) {
+		// 	this.sendCode(`M37 P"${Path.combine(this.directory, (item && item.name) ? item.name : this.selection[0].name)}"`);
+		// }
+		dialogPushFirst() { 
+			this.push(this.startJobDialog.item,this.startJobDialog.notes,true)
+			this.startJobDialog.shown = false
 		},
-		simulate(item) {
-			this.sendCode(`M37 P"${Path.combine(this.directory, (item && item.name) ? item.name : this.selection[0].name)}"`);
+		dialogPushLast() { 
+			this.push(this.startJobDialog.item,this.startJobDialog.notes,false)
+			this.startJobDialog.shown = false		
+		},
+		push(item,notes,first) {
+			const file = `${Path.combine(this.directory, (item && item.name) ? item.name : this.selection[0].name)}`
+			console.log(file)
+			console.log(first)
+
+			//TODO notes
+			this.sendBackendCode(`${this.selectedMachine};PUSH;${file};${notes}`)
 		}
 	}
 }

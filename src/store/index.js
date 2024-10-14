@@ -114,7 +114,7 @@ const store = new Vuex.Store({
 				commit('addMachine', { hostname, moduleInstance });
 				connectorInstance.register(moduleInstance);
 
-				//commit('setSelectedMachine', hostname);
+				commit('setSelectedMachine', hostname);
 				//logGlobal('success', i18n.t('events.connected', [hostname]));
 
 				// if (state.isLocal) {

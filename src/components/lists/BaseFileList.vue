@@ -88,7 +88,7 @@ th.checkbox {
 			<v-list>
 				<slot name="context-menu"></slot>
 
-				<v-list-tile v-show="!noDownload && innerValue.length === 1 && filesSelected" @click="download">
+				<!-- <v-list-tile v-show="!noDownload && innerValue.length === 1 && filesSelected" @click="download">
 					<v-icon class="mr-1">cloud_download</v-icon> {{ $tc('list.baseFileList.download', innerValue.length) }}
 				</v-list-tile>
 				<v-list-tile v-show="!noEdit && innerValue.length === 1 && filesSelected" :disabled="!canEditFile" @click="edit(innerValue[0])">
@@ -102,7 +102,7 @@ th.checkbox {
 				</v-list-tile>
 				<v-list-tile v-show="!foldersSelected && innerValue.length > 1" @click="downloadZIP">
 					<v-icon class="mr-1">archive</v-icon> {{ $t('list.baseFileList.downloadZIP') }}
-				</v-list-tile>
+				</v-list-tile> -->
 			</v-list>
 		</v-menu>
 
@@ -658,6 +658,8 @@ export default {
 
 			this.editDialog.shown = false;
 			this.renameDialog.shown = false;
+
+			this.loadDirectory(this.innerDirectory);
 		},
 		storages: {
 			deep: true,

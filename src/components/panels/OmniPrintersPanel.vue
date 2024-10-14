@@ -22,7 +22,7 @@ th {
 <template>
     <v-card>
         <v-card-title>
-            <v-icon class="mr-1">mdi-printer-3d-nozzle</v-icon> Printers
+            Printers
             <v-spacer></v-spacer>
             <v-btn color="success" @click="showNewPrinterDialog=true">Add new printer</v-btn>
         </v-card-title>
@@ -30,14 +30,15 @@ th {
             <table width="100%">
                 <tr>
                     <th width="15%">Name</th>
-                    <th width="15%">IP</th>
+                    <th width="10%">IP</th>
                     <th width="10%">Status</th>
-                    <th width="30%">File</th>
+                    <th width="10%">Queue status</th>
+                    <th width="25%">File</th>
                     <th width="15%">Progress</th>
                     <th width="15%">Est. time left</th>
                 </tr>
                 <tr>
-                    <td colspan="6">
+                    <td colspan="7">
                         <v-divider></v-divider>
                     </td>
                 </tr>
@@ -56,7 +57,14 @@ th {
                         </td>
                         <td>
                             <!-- {{ printer.status }} -->
-                            <span class="status px-2" :class="statusClass(printer.status)">{{ statusText(printer.status) }}</span>
+                            <span class="status px-2 py-1" :class="statusClass(printer.status)">{{ statusText(printer.status) }}</span>
+                        </td>
+                        <td>
+                            <span style="border-radius: 5px;" class="px-2 py-1" :class="queueStatusClass(printer.queueActive)">
+                                <v-icon small>{{ printer.queueActive ? 'play_arrow' : 'stop' }}</v-icon>
+                                {{ printer.scheduledJobs || printer.queueActive ? `${printer.scheduledJobs} in queue` : `no jobs` }}
+                            </span>
+
                         </td>
                         <td>
                             {{ printer.file }}
@@ -75,7 +83,7 @@ th {
                         </td>
                     </tr>
                     <tr :key="`${key}-div`">
-                        <td colspan="6">
+                        <td colspan="7">
                             <v-divider></v-divider>
                         </td>
                     </tr>
@@ -118,13 +126,13 @@ import ConfirmDialog from '../dialogs/ConfirmDialog.vue'
 export default {
   components: { ConfirmDialog },
     computed: {
+        ...mapState('backend/model',['printq']),
         ...mapState({
             machines: state => state.machines,
             connectionStates: state => state.connectionStates,
             hosts: state => state.settings.hosts,
             darkTheme: state => state.settings.darkTheme
         }),
-        // ...mapState('settings', ['darkTheme']),
         keys() { return Object.keys(this.machines)},
         printers() {
 
@@ -138,6 +146,8 @@ export default {
                 let _progress = 0
                 let _timeLeft = 0
                 let _isPrinting = false
+                let _queueActive = false
+                let _scheduledJobs = undefined
                 if (Object.keys(this.machines).includes(hostname)) {
                     const machine = this.machines[hostname]
                     _name = host.name || machine.model.network.name
@@ -146,6 +156,11 @@ export default {
                     _progress = this.jobProgress(machine.model)*100
                     _timeLeft = this.smartEstimate(machine.model)
                     _isPrinting = this.isPrinting(machine.model)
+                    const queueIndex = this.printq.findIndex(printer => printer.hostname === hostname )
+                    if (queueIndex >= 0) {
+                        _queueActive = this.printq[queueIndex].queue_active
+                        _scheduledJobs = this.printq[queueIndex].queue.length 
+                    }
                 }
 
                 return {
@@ -155,7 +170,9 @@ export default {
                     'file': _file,
                     'progress': _progress,
                     'timeLeft': _timeLeft,
-                    'isPrinting': _isPrinting
+                    'isPrinting': _isPrinting,
+                    'queueActive': _queueActive,
+                    'scheduledJobs': _scheduledJobs
                 }
 
             })
@@ -260,7 +277,11 @@ export default {
 				
 			}
 			return 'red white--text';
-		}
+		},
+        queueStatusClass(active) {
+            if(active) return 'green white--text';
+            return this.darkTheme ? 'orange darken-2' : 'yellow lighten-1';
+        }
     }
 }
 </script>
